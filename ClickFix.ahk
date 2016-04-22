@@ -1,68 +1,98 @@
 #InstallMouseHook
 #SingleInstance, force
 
+
+
+ver := "1.0.3"
 settings_file = ClickFix_Settings.ini
-ver := "1.0.2"
-left_button := 1
-right_button := 1
-middle_button := 1
+startup_shortcut := A_Startup . "\ClickFix.lnk"
+settings := Object()
+
+; Initialize Settings in the following way:
+; array[key]   := ["Section", "Key", "Value"]
+settings["lb"] := ["Mouse", "left_button", false]
+settings["mb"] := ["Mouse", "middle_button", false]
+settings["rb"] := ["Mouse", "right_button", false]
+settings["sww"] := ["General", "startup_run", false]
+
+if !FileExist(settings_file) {
+    write_settings(settings)
+    about()
+}
+
+; Initialize the program's functionality
+read_settings(settings)
+update_sww_state(settings["sww"][3])
+set_hotkey_states()
+
 
 ; Set up the right click menu
 Menu, Tray, NoStandard
-; Menu, Tray, Add, Options
+
 Menu, Tray, Add, About, about
+
 Menu, options, Add, Fix Left Button, flb
 Menu, options, Add, Fix Middle Button, fmb
 Menu, options, Add, Fix Right Button, frb
+Menu, options, Add
+Menu, options, Add, Start with Windows, sww
 Menu, Tray, Add, Options, :options
+
 Menu, Tray, Add,
 Menu, Tray, Add, Reset, reset
 Menu, Tray, Add, Exit, exit
+Menu, Tray, Tip, ClickFix - Tame your mouse
 
-if !FileExist(settings_file) {
-    write_settings("false", "false", "false")
-    about()
-}
-read_settings(left_button, middle_button, right_button)
-set_hotkey_states()
 
 ; Load in the menu state to reflect the settings
-if (left_button == "true") {
+; Need a neater solution...
+if (settings["lb"][3] == true) {
     Menu, options, Check, Fix Left Button
 }
 
-if (right_button == "true") {
+if (settings["mb"][3] == true) {
+    Menu, options, Check, Fix Middle Button
+}
+
+if (settings["rb"][3] == true) {
     Menu, options, Check, Fix Right Button
 }
 
-if (middle_button == "true") {
-    Menu, options, Check, Fix Middle Button
+if (settings["sww"][3] == true) {
+    Menu, options, Check, Start With Windows
 }
+
 return
 
+
+
+; Menu handlers - using labels to manipulate global variables
 flb:
-menu, options, ToggleCheck, Fix Left Button
-toggle(left_button)
+Menu, options, ToggleCheck, Fix Left Button
+settings["lb"][3] := !settings["lb"][3]
 save()
 set_hotkey_states()
 return
 
 fmb:
-menu, options, ToggleCheck, Fix Middle Button
-toggle(middle_button)
+Menu, options, ToggleCheck, Fix Middle Button
+settings["mb"][3] := !settings["mb"][3]
 save()
 set_hotkey_states()
 return
 
 frb:
-menu, options, ToggleCheck, Fix Right Button
-toggle(right_button)
+Menu, options, ToggleCheck, Fix Right Button
+settings["rb"][3] := !settings["rb"][3]
 save()
 set_hotkey_states()
 return
 
-
-
+sww:
+menu, options, ToggleCheck, Start With Windows
+settings["sww"][3] := !settings["sww"][3]
+update_sww_state(settings["sww"][3])
+return
 
 reset:
 MsgBox, 0x34, Are you sure?, This will completely wipe all settings and exit the program.
@@ -75,70 +105,84 @@ exit:
 save()
 ExitApp
 
+
+
+; Function definitions
+
 save() {
-    global left_button
-    global middle_button
-    global right_button
-    write_settings(left_button, middle_button, right_button)
+    global settings
+    write_settings(settings)
 }
 
-write_settings(l, m, r) {
+write_settings(settings) {
     global settings_file
-    IniWrite, %l%, %settings_file%, Mouse, left_button
-    IniWrite, %m%, %settings_file%, Mouse, middle_button
-    IniWrite, %r%, %settings_file%, Mouse, right_button
+    for index, var in settings {
+        IniWrite, % var[3], %settings_file%, % var[1], % var[2]
+    }
 }
 
-read_settings(ByRef l, ByRef m, ByRef r) {
+; FIX
+read_settings(ByRef settings) {
     global settings_file
-    IniRead, l, %settings_file%, Mouse, left_button
-    IniRead, m, %settings_file%, Mouse, middle_button
-    IniRead, r, %settings_file%, Mouse, right_button
+    for index, var in settings {
+        IniRead, buffer, %settings_file%, % var[1], % var[2]
+        var[3] := buffer
+    }
 }
 
 set_hotkey_states() {
-    global left_button
-    global middle_button
-    global right_button
-    if (left_button == "true") {
+    global settings
+    if (settings["lb"][3] == true) {
         Hotkey, LButton, On
     } else {
         Hotkey, LButton, Off
     }
 
-    if (middle_button == "true") {
+    if (settings["mb"][3] == true) {
         Hotkey, MButton, On
     } else {
         Hotkey, MButton, Off
     }
 
-    if (right_button == "true") {
+    if (settings["rb"][3] == true) {
         Hotkey, RButton, On
     } else {
         Hotkey, RButton, Off
     }
 }
 
-toggle(ByRef var) {
-    if (var == "true") {
-        var := "false"
-        return
-    } else if (var == "false") {
-        var := "true"
-        return
+; Makes sure the settings are refleched
+update_sww_state(state){
+    global startup_shortcut
+    if (state) {
+        FileGetShortcut, %startup_shortcut%, shortcut_path
+        if (!FileExist(startup_shortcut) || shortcut_path != A_ScriptFullPath) {
+            startup_shortcut_create()
+        }
+    } else {
+        startup_shortcut_destroy()
     }
 }
 
-toggle_start_with_windows(state){
-    ; Toggles start with windows
+
+startup_shortcut_create() {
+    global startup_shortcut
+    FileCreateShortcut, %A_ScriptFullPath%, %startup_shortcut%
+}
+
+startup_shortcut_destroy() {
+    global startup_shortcut
+    FileDelete, %startup_shortcut%
 }
 
 about(){
 global ver
-MsgBox, 0x40, Welcome to ClickFix!, % "There is a real issue in modern society - wild mice.`nThey constantly rebel against the loving hand of their keeper and click without instruction - destroying their usefulness. Well, I say no more! With ClickFix, we hope to tame your wild mouse and make it usable again - at least until you can get another.`n`nTo get started, simply right click on the tray icon and under 'Options' click the name of the button on your mouse that's giving you grief. You can choose to start ClickFix with Windows in this menu as well (for convenience). ClickFix will run in the background, keeping a leash on your mouse.`n`nThis script is at version " . ver . ".`nCopyright 2016 Jason Cemra - released under the GPL.`nVery special thanks to the AutoHotKey crew, for making this script easy."
+MsgBox, 0x40, Welcome to ClickFix!, % "There is a real issue in modern society - wild mice.`nThey constantly rebel against the loving hand of their keeper and click without instruction - destroying their usefulness. Well, I say no more! With ClickFix, we hope to tame your wild mouse and make it usable again - at least until you can get another.`n`nTo get started, simply right click on the tray icon and under 'Options' click the name of the button on your mouse that's giving you grief. You can choose to start ClickFix with Windows in this menu as well (for convenience). ClickFix will run in the background, keeping a leash on your mouse.`n`nThis script is at version " . ver . ".`nCopyright 2016 Jason Cemra - released under the GPLv2.`nVery special thanks to the AutoHotKey crew, for making this script easy."
 }
 
-; Stop the middle mouse from re-clicking constantly
+
+
+; The real logic of the program - hotkeys triggered by mouse events
 MButton::
 Click Middle Down
 is_down := 1
