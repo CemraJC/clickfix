@@ -55,3 +55,5 @@ Thanks for taking the time to read this - it really helps.
 * Update the icon to be cooler
 * Fix the lag issue (under "Caveats" in README.md)
 * Support for more buttons (only if the problem exists)
+* Make the about message less annoying
+* Fix the License version
