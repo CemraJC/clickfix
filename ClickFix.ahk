@@ -3,7 +3,7 @@
 
 
 
-ver := "1.0.3"
+ver := "1.0.4"
 settings_file = ClickFix_Settings.ini
 startup_shortcut := A_Startup . "\ClickFix.lnk"
 settings := Object()
@@ -91,6 +91,7 @@ return
 sww:
 menu, options, ToggleCheck, Start With Windows
 settings["sww"][3] := !settings["sww"][3]
+save()
 update_sww_state(settings["sww"][3])
 return
 
@@ -99,6 +100,7 @@ MsgBox, 0x34, Are you sure?, This will completely wipe all settings and exit the
 IfMsgBox, No
     return
 FileDelete, %settings_file%
+startup_shortcut_destroy()
 ExitApp
 
 exit:
@@ -177,7 +179,7 @@ startup_shortcut_destroy() {
 
 about(){
 global ver
-MsgBox, 0x40, Welcome to ClickFix!, % "There is a real issue in modern society - wild mice.`nThey constantly rebel against the loving hand of their keeper and click without instruction - destroying their usefulness. Well, I say no more! With ClickFix, we hope to tame your wild mouse and make it usable again - at least until you can get another.`n`nTo get started, simply right click on the tray icon and under 'Options' click the name of the button on your mouse that's giving you grief. You can choose to start ClickFix with Windows in this menu as well (for convenience). ClickFix will run in the background, keeping a leash on your mouse.`n`nThis script is at version " . ver . ".`nCopyright 2016 Jason Cemra - released under the GPLv2.`nVery special thanks to the AutoHotKey crew, for making this script easy."
+MsgBox, 0x40, Welcome to ClickFix!, % "Thank you for using ClickFix!`n`nTo get started, simply right click on the tray icon and under 'Options', select the name of the button on your mouse that's giving you grief. You can also choose to start ClickFix with Windows here. ClickFix will run in the background, keeping a leash on your mouse. It is always available from the taskbar tray area (if it's running)`n`nThis software is at version " . ver . ".`nCopyright 2016 Jason Cemra - released under the GPLv3.`nVery special thanks to the AutoHotKey crew, for making this program easy."
 }
 
 
