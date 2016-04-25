@@ -40,7 +40,7 @@ Thanks for taking the time to read this - it really helps.
 
 * Port the software to OSX
 * Port the software to Unix-like systems
-* Buy a proper domain-name for the website
+* Sponsor a proper domain-name for the website
 * Get us a mention in a notable place where potential users frequent - maximise the benfit to others
     + *Non-exhausitve list of notable places*
     + YouTube video of a significant repairs/tech channel (>8,000 subs / > 15,000 views)
@@ -50,10 +50,8 @@ Thanks for taking the time to read this - it really helps.
     + Tom's Hardware (main threads)
 
 #### Minor
-> You get internet cred and your name in the commit logs for doing these
+> You get internet cred and your username in the commit logs for doing these
 
-* Update the icon to be cooler
+* Make the icon look cooler
 * Fix the lag issue (under "Caveats" in README.md)
 * Support for more buttons (only if the problem exists)
-* Make the about message less annoying
-* Fix the License version
