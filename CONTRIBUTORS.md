@@ -52,6 +52,6 @@ Thanks for taking the time to read this - it really helps.
 #### Minor
 > You get internet cred and your username in the commit logs for doing these
 
-* Make the icon look cooler
+* Make the icon look even cooler
 * Fix the lag issue (under "Caveats" in README.md)
 * Support for more buttons (only if the problem exists)
