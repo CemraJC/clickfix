@@ -4,7 +4,7 @@ If you want to be super helpful, do something that's on the todo list below :)
 
 As with any open source project, you can go ahead and make your changes and integrations however fits under the terms of the license (see LICENSE.txt). However, if you want your changes to be merged in, please make sure that you are aware of the Contributor License Agreement and that contributions follow these guidelines:
 
-* **No external dependencies** (except AutoHotKey). Sorry - it's too hard for me to keep track of licensing, versions, compatibility - etc.
+* **No licensed external dependencies** (except AutoHotKey). Sorry - it's too hard for me to keep track of licensing, versions, compatibility - etc. Free(dom) software is allowed though.
 * **Stick to the language.** Contributions to the software itself should be written in AHK script, C or C++. Anything besides these languages won't be accepted - it makes the codebase messy.
 * **No excessive commenting.** If your code isn't written clearly enough that people understand what it does, rename some things and do some refactoring. Comments to denote sections of code are fine though.
 * **Follow the style.** See below for the mandatory styleguide.

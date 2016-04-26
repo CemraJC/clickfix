@@ -1,6 +1,6 @@
 # ClickFix
 ###Tame your mouse
-> Windows Only - *Should work on any version*
+> Windows Only - *Should work on any version - tested on Win7*
 
 
 ### Get started
