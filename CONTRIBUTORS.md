@@ -1,13 +1,23 @@
 # To Contribute
 
-As with any open source project, you can go ahead and make your changes however you like (under the tersm of the license). However, if you want your changes to be merged in, please make sure they follow these guidelines:
+If you want to be super helpful, do something that's on the todo list below :)
+
+As with any open source project, you can go ahead and make your changes and integrations however fits under the terms of the license (see LICENSE.txt). However, if you want your changes to be merged in, please make sure that you are aware of the Contributor License Agreement and that contributions follow these guidelines:
 
 * **No external dependencies** (except AutoHotKey). Sorry - it's too hard for me to keep track of licensing, versions, compatibility - etc.
 * **Stick to the language.** Contributions to the software itself should be written in AHK script, C or C++. Anything besides these languages won't be accepted - it makes the codebase messy.
 * **No excessive commenting.** If your code isn't written clearly enough that people understand what it does, rename some things and do some refactoring. Comments to denote sections of code are fine though.
 * **Follow the style.** See below for the mandatory styleguide.
 
-If you want to be super helpful, do something that's on the todo list below.
+
+### Contributor License Agreement
+
+>TL;DR The contributor signs over the rights of any contributions (code, graphics - any resource) to be solely owned by the project
+
+By contributing to this project, it is assumed that the contributor is familiar with the following terms.
+Any contribution of resources (code, graphics, etc.) to this project are free from the author's copyright and the rights of any other party involved with the resource. The rights to the resource are explicitly signed over to the project as its own entity. The project is not responsible for resolving potential misdemeanors from license terms as performed by the contributor - the project considers any contribution as solely its own resource, for the purposes of licensing simplicity.
+
+If you contribute positively to this project, you are required to accept that you are a slightly more awesome person than you were before :P
 
 ### Styleguide
 
