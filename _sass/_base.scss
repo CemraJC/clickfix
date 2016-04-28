@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    position: relative;
+    background: #FFFCF8;
+    padding: $pad;
+    line-height: 1.7;
+
+    box-shadow: 0 -0.3em 2em #000;
+    border-top: 1px solid #000;
+    z-index: 10;
+}

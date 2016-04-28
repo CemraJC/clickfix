@@ -1,0 +1,64 @@
+
+/*
+    This code was ripped from the "Twilight" Github theme - just so you know
+ */
+
+
+a.zip,
+a.zip span {
+  background: transparent url(../images/zip.png) no-repeat 0 0;
+}
+
+a.tar,
+a.tar span {
+  background: transparent url(../images/tar.png) no-repeat 0 0;
+}
+
+a.exe,
+a.exe span {
+  background: transparent url(../images/download.png) no-repeat 0 0;
+}
+
+
+a.download-button {
+  display: inline-block;
+  filter:alpha(opacity=80);  /* IE 5-7 */
+  text-indent: 0!important;
+
+  width: auto;
+  height: auto;
+
+  background: #999; /* for non-css3 browsers */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#37ADD4', endColorstr='#1B657E'); /* IE <= 9 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#37ADD4), to(#1B657E)); /* ancient webkit browsers */
+  background: -webkit-linear-gradient(top,  #37ADD4,  #1B657E);  /* Safari <=6.1, Android <= 4.3 */
+  background: linear-gradient(to bottom,  #37ADD4,  #1B657E);
+  border: 1px solid black;
+  border-radius: 3px;
+  float: right;
+  opacity: 0.8;
+
+  margin-left: 10px;
+
+  transition: opacity ease-in-out 0.3s;
+  -webkit-transition: opacity ease-in-out 0.3s;  /* Safari <=6.1, Android <= 4.3 */
+
+  &:hover {
+    opacity: 1;
+    filter:alpha(opacity=100);
+  }
+}
+
+a.download-button span {
+  background-position: 10px 5px;
+  width: auto;
+  height: auto;
+  padding: 5px 10px;
+  padding-left: 45px;
+  display: inline-block;
+  text-indent: 0!important;
+  color: #fff;
+}
+
+
+

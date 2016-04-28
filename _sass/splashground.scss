@@ -1,0 +1,47 @@
+header.splashground {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    position: relative;
+    height: 50em;
+    background: #15161A;
+    background-image: url(../images/splash.jpg);
+    background-size: cover;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+
+    text-align: center;
+
+    z-index: 1;
+
+    .title {
+        text-align: center;
+        color: #DDDBD0;
+
+        background: #111; // Fallback for non-rgba supporting browsers
+        background: rgba(0, 0, 0, 0.8);
+
+        padding: $pad 0;
+        & h1 {
+            font-size: 580%;
+            line-height: 80%;
+            font-family: Vladimir Script, Georgia, serif;
+        }
+        & p {
+            opacity: 0.9;
+            text-indent: 6em;
+            font-family: Georgia, serif;
+            font-style: italic;
+        }
+    }
+
+    img.parallax {
+        display: block;
+        position: absolute;
+        right: -2em;
+        top: 35em;
+        width: 40em;
+    }
+}
