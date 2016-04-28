@@ -3,3 +3,5 @@
 *.ini
 *.lnk
 _site/
+gitignore/
+.sass-cache/
