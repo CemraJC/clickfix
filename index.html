@@ -1,110 +1,74 @@
 <!doctype html>
-<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
-<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on https://github.com/jonrohan -->
+<!-- Written, styled and developed with love by Jason Cemra -->
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
-  <link rel="stylesheet" href="stylesheets/github-dark.css">
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript" src="javascripts/script.js"></script>
+  <link rel="stylesheet" href="css/main.css" media="screen">
+  <link rel="stylesheet" href="stylesheet/github-dark.css">
 
   <title>Clickfix</title>
   <meta name="description" content="Stop annoying repeat clicks - tame your mouse">
-
   <meta name="viewport" content="width=device-width,initial-scale=1">
-
 </head>
 
 <body>
 
-  <div class="wrapper">
-    <header>
+    <header class="splashground">
       <h1 class="title">Clickfix</h1>
+      <p class="tagline">Stop annoying repeat clicks - tame your mouse</p>
+      <img class="parallax" src="images/mouse.png">
     </header>
     <div id="container">
-      <p class="tagline">Stop annoying repeat clicks - tame your mouse</p>
       <div id="main" role="main">
         <div class="download-bar">
-        <div class="inner">
-          <a href="https://github.com/CemraJC/clickfix/tarball/master" class="download-button tar"><span>Download</span></a>
-          <a href="https://github.com/CemraJC/clickfix/zipball/master" class="download-button zip"><span>Download</span></a>
-          <a href="https://github.com/CemraJC/clickfix" class="code">View Clickfix on GitHub</a>
+          <div class="inner">
+            <a href="https://github.com/CemraJC/clickfix/tarball/master" class="download-button tar"><span>Source</span></a>
+            <a href="https://github.com/CemraJC/clickfix/zipball/master" class="download-button zip"><span>Source</span></a>
+            <a href="https://github.com/CemraJC/clickfix/releases/latest" class="download-button exe"><span>Download</span></a>
+            <a href="https://github.com/CemraJC/clickfix" class="code">View Clickfix on GitHub</a>
+          </div>
         </div>
-        <span class="blc"></span><span class="trc"></span>
+        <article class="body">
+        <h1>ClickFix</h1>
+        <h3>Tame your mouse</h3>
+
+        <div class="bar-section">
+          <img src="images/cursor.png">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
         </div>
-        <article class="markdown-body">
-          <h1>
-<a id="clickfix" class="anchor" href="#clickfix" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ClickFix</h1>
 
-<h3>
-<a id="tame-your-mouse" class="anchor" href="#tame-your-mouse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tame your mouse</h3>
+        <div class="bar-section">
+          <p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+          <img src="images/medicine.png">
+        </div>
 
-<blockquote>
-<p>Windows Only - <em>Should work on any version - tested on Win7</em></p>
-</blockquote>
+        <div class="bar-section">
+          <img src="images/clickfix.png">
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+        </div>
 
-<h3>
-<a id="get-started" class="anchor" href="#get-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Get started</h3>
-
-<p>To get going with ClickFix, simply download the <a href="https://github.com/cemrajc/clickfix/releases/latest">latest executable</a>, <strong>put it in its own folder</strong> and run it. Because ClickFix is completely portable, it runs without installation - you could even run it off a thumb-drive.</p>
-
-<p>When started for the first time, the "About" window pops up. Right click on the tray icon and under 'Options' click the name of the button on your mouse that's giving you grief. You can choose to start ClickFix with Windows in this menu as well (for convenience). ClickFix will run in the background, keeping a leash on your mouse.</p>
-
-<p>Copyright 2016 Jason Cemra - released under the <a href="http://www.gnu.org/licenses/">GPLv3</a></p>
-
-<p>Very special thanks to the <a href="https://autohotkey.com/">AutoHotKey crew</a>, for making this script easy.</p>
-
-<h1>
-<a id="all-about-it" class="anchor" href="#all-about-it" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>All about it</h1>
-
-<p>There exists a serious issue in modern society - wild mice.</p>
-
-<p>A "wild mouse" clicks multiple times when only instructed to click once. You may have experience with this particular glitch, which can occur on any of the mouse's buttons.</p>
-
-<p>I personally believed that this could not be fixed in software, because it's a problem with the mouse itself. I also believed that this problem pretty much happens to every mouse at some point - and the only practical solution is to get a new one. Well, I say <strong>no more</strong>!</p>
-
-<p>What started with an idea became ClickFix. With this very simple software, we hope to successfully apply basic debouncing logic to tame your wild mouse and make it usable again - at least until you can get a more reliable replacement.</p>
-
-<h3>
-<a id="caveats" class="anchor" href="#caveats" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Caveats</h3>
-
-<p><strong>ClickFix doesn't claim that it can tame <em>all</em> wild mice.</strong></p>
-
-<p>One noticeable drawback of ClickFix, is that users which rely on extremely low latency input (gamers, editors, 3D modelers, digital artists) <strong>will notice a slight lag</strong> from when they physically release the button, to when it is 'released' in the software.</p>
-
-<p>Sometimes, the mouse buttons extra click happens <em>just</em> too late for the fix to work - so it will send an extra click. This is a very rare occurrence, but I have observed it myself.</p>
-
-<p>Other than those minor issues, <strong>the benefits of ClickFix are undeniably worth the draw backs.</strong> Mainly, because ClickFix takes an unusable mouse and makes it bearable.</p>
-
-<p>Unfortunately, this software is limited by the test cases we have access to. Since I only have access to one faulty mouse, it's entirely possible that this solution only works for me. <strong>If you're willing to leave feedback, send me a message telling me if it did or did not work.</strong></p>
-
-<h3>
-<a id="how-it-works" class="anchor" href="#how-it-works" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How it works</h3>
-
-<p>ClickFix is very simple. Most of the script's length is actually the interface logic. As mentioned in the about section, all it does is debounce the mouse clicks. Every time you click a button that is targeted for fixing, ClickFix will hold it down <em>in software</em> for a short amount of time until you release it. Normally, the multiple clicks a wild mouse performs happen <em>very</em> fast, so the delay that ClickFix imposes is long enough to cancel the extra clicks - but short enough to mostly not be noticed.</p>
         </article>
-      </div>
     </div>
-    <footer>
-      <div class="owner">
-      <p><a href="https://github.com/CemraJC" class="avatar"><img src="https://avatars3.githubusercontent.com/u/9857188?v=3&amp;s=60" width="48" height="48"></a> <a href="https://github.com/CemraJC">CemraJC</a> maintains <a href="https://github.com/CemraJC/clickfix">Clickfix</a></p>
+
+  <footer>
+    <div class="owner">
+    <p><a href="https://github.com/CemraJC" class="avatar"><img src="https://avatars3.githubusercontent.com/u/9857188?v=3&amp;s=60" width="48" height="48"></a> <a href="https://github.com/CemraJC">CemraJC</a> maintains <a href="https://github.com/CemraJC/clickfix">Clickfix</a></p>
 
 
-      </div>
-      <div class="creds">
-        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
-      </div>
-    </footer>
-  </div>
+    </div>
+    <div class="creds">
+      <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+    </div>
+  </footer>
+
   <div class="current-section">
     <a href="#top">Scroll to top</a>
     <a href="https://github.com/CemraJC/clickfix/tarball/master" class="tar">tar</a><a href="https://github.com/CemraJC/clickfix/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
     <p class="name"></p>
   </div>
 
-  
+
 </body>
 </html>
