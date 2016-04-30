@@ -1,0 +1,12 @@
+@media screen and (max-width: 425px) {
+    body {
+        font-size: 10pt;
+        text-align: justify !important;
+    }
+    span[hs] {
+        display: none !important;
+    }
+    a.github-reference img {
+        padding: 0 !important;
+    }
+}

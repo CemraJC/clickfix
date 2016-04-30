@@ -5,7 +5,9 @@
 
         & .download-bar {
             background: #111;
-            // NEED A SUBTLE TEXTURE
+            background-image: url(../images/pattern.png);
+            box-shadow: 0 0.1em 0.2em #000;
+            border-bottom: 1px solid #000;
 
             & .inner {
                 max-width: 1000px;
