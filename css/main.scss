@@ -6,5 +6,7 @@ body {
 }
 
 $pad : 2em;
+$serif : Georgia, Times, serif;
+$sans-serif : Open Sans, Arial, sans-serif;
 
-@import "rip", "base", "splashground", "bodystyles"
+@import "rip", "base", "splashground", "bodystyles", "footer"

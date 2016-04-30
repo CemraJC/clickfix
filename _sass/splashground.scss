@@ -27,12 +27,12 @@ header.splashground {
         & h1 {
             font-size: 580%;
             line-height: 80%;
-            font-family: Vladimir Script, Georgia, serif;
+            font-family: Vladimir Script, $serif;
         }
         & p {
             opacity: 0.9;
             text-indent: 6em;
-            font-family: Georgia, serif;
+            font-family: $serif;
             font-style: italic;
         }
     }
@@ -40,8 +40,8 @@ header.splashground {
     img.parallax {
         display: block;
         position: absolute;
-        right: -2em;
-        top: 35em;
-        width: 40em;
+        right: 2em;
+        top: 30em;
+        width: 22%;
     }
 }

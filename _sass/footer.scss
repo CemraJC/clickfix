@@ -1,0 +1,25 @@
+footer {
+    width: 100%;
+    color: #ccc;
+    background: #111;
+    font-family: $sans-serif;
+    font-size: 80%;
+
+    & a {
+        color: #BCCFFF;
+    }
+
+    & .inner {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: $pad;
+    }
+
+    & .creds, & .owner {
+        opacity: 0.9;
+        display: inline-block;
+    }
+    & .creds {
+        float: right;
+    }
+}

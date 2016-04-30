@@ -1,15 +1,73 @@
 .container {
+    min-height: 60%;
+
     & .main {
+
         & .download-bar {
-            padding: $pad;
-            background: #101010;
+            background: #111;
             // NEED A SUBTLE TEXTURE
+
+            & .inner {
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: $pad;
+            }
             & a.github-reference {
+                padding: 1em;
+                border-radius: 5em;
+
+                background: #030303;
                 color: #CCCCCC;
+
+                box-shadow: 0 0 0.2em #000;
                 text-decoration: none;
+                transition: background 200ms;
+                & img {
+                    width: 2em;
+                    vertical-align: middle;
+                    padding-bottom: 0.2em;
+                    padding-right: 0.5em;
+                }
+                &:hover {
+                    background: #000;
+                    box-shadow: 0 0 0.5em #000;
+                }
             }
         }
 
+
+        & article.body {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: $pad;
+            font-family: Open Sans, Arial, sans-serif;
+
+            & h1.headline {
+                font-size: 300%;
+                & span {
+                    font-family: $serif;
+                    font-size: 50%;
+                    font-style: italic;
+                    color: #636363;
+                }
+            }
+
+            & .bar-section {
+                display: block;
+                margin: $pad*2 0;
+                & img {
+                    display: inline-block;
+                    vertical-align: middle;
+                    width: 30%;
+                }
+                & div.text {
+                    vertical-align: middle;
+                    display: inline-block;
+                    width: 66%;
+                }
+            }
+
+        }
 
     }
 }
