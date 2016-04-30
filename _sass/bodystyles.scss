@@ -1,0 +1,15 @@
+.container {
+    & .main {
+        & .download-bar {
+            padding: $pad;
+            background: #101010;
+            // NEED A SUBTLE TEXTURE
+            & a.github-reference {
+                color: #CCCCCC;
+                text-decoration: none;
+            }
+        }
+
+
+    }
+}

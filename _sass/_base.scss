@@ -3,10 +3,14 @@
     padding: 0;
 }
 
+a {
+    color: #BBBBFF;
+    letter-spacing: 0.1em;
+}
+
 .container {
     position: relative;
     background: #FFFCF8;
-    padding: $pad;
     line-height: 1.7;
 
     box-shadow: 0 -0.3em 2em #000;
