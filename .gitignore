@@ -2,4 +2,6 @@
 *ffs_*
 *.ini
 *.lnk
-dist/
+_site/
+gitignore/
+.sass-cache/

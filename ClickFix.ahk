@@ -15,6 +15,7 @@ settings["mb"] := ["Mouse", "middle_button", false]
 settings["rb"] := ["Mouse", "right_button", false]
 settings["sww"] := ["General", "startup_run", false]
 
+; Let's assume that this is a first-run, since there's no settings
 if !FileExist(settings_file) {
     write_settings(settings)
     about()
