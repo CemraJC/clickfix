@@ -57,15 +57,18 @@
             & .bar-section {
                 display: block;
                 margin: $pad*2 0;
-                & img {
+                & img.display {
                     display: inline-block;
-                    vertical-align: middle;
+                    margin-bottom: 3em;
                     width: 30%;
+                    max-width: 13em;
+                    &.right { float: right; }
+                    &.left { float: left; }
                 }
                 & div.text {
                     vertical-align: middle;
                     display: inline-block;
-                    width: 66%;
+                    width: 70%;
                 }
             }
 
