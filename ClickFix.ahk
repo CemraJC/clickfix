@@ -23,7 +23,6 @@ if !FileExist(settings_file) {
 
 ; Initialize the program's functionality
 read_settings(settings)
-update_sww_state(settings["sww"][3])
 set_hotkey_states()
 
 
@@ -63,6 +62,8 @@ if (settings["sww"][3] == true) {
     Menu, options, Check, Start With Windows
 }
 
+Sleep, 500  ; There seems to be an issue with the startup shortcut disappearing
+update_sww_state(settings["sww"][3])
 return
 
 
@@ -103,10 +104,12 @@ IfMsgBox, No
 FileDelete, %settings_file%
 startup_shortcut_destroy()
 ExitApp
+return
 
 exit:
 save()
 ExitApp
+return
 
 
 
