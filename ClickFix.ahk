@@ -166,6 +166,7 @@ update_sww_state(state){
             startup_shortcut_create()
         }
     } else {
+        MsgBox % "Destroying shortcut! shortcut_path: " . shortcut_path . " A_ScriptFullPath: " . A_ScriptFullPath . " state: " . state
         startup_shortcut_destroy()
     }
 }
@@ -178,7 +179,7 @@ startup_shortcut_create() {
 
 startup_shortcut_destroy() {
     global startup_shortcut
-    FileDelete, %startup_shortcut%
+    ; FileDelete, %startup_shortcut%
 }
 
 about(){
