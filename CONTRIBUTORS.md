@@ -65,5 +65,6 @@ Thanks for taking the time to read this - it really helps.
 * Make the icon look even cooler
 * Fix the lag issue (under "Caveats" in README.md)
 * Support for more buttons (only if the problem exists)
-* Stop tracking the dist folder (binaries should be uploaded from SOURCE!)
 * Fix up the gh-pages branch history (looks bad)
+* Optimize the gh-pages site images and responsiveness (scaling issues)
+* Make a test ground for new mice / issues (web interface - capture clicks, flag misclicks)
