@@ -127,7 +127,6 @@ write_settings(settings) {
     }
 }
 
-; FIX
 read_settings(ByRef settings) {
     global settings_file
     for index, var in settings {
@@ -166,7 +165,6 @@ update_sww_state(state){
             startup_shortcut_create()
         }
     } else {
-        MsgBox % "Destroying shortcut! shortcut_path: " . shortcut_path . " A_ScriptFullPath: " . A_ScriptFullPath . " state: " . state
         startup_shortcut_destroy()
     }
 }
@@ -174,12 +172,12 @@ update_sww_state(state){
 
 startup_shortcut_create() {
     global startup_shortcut
-    FileCreateShortcut, %A_ScriptFullPath%, %startup_shortcut%
+    FileCreateShortcut, %A_ScriptFullPath%, %startup_shortcut%, %A_WorkingDir%
 }
 
 startup_shortcut_destroy() {
     global startup_shortcut
-    ; FileDelete, %startup_shortcut%
+    FileDelete, %startup_shortcut%
 }
 
 about(){
