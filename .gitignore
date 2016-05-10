@@ -4,4 +4,5 @@
 *.lnk
 _site/
 gitignore/
+node_modules/
 .sass-cache/
