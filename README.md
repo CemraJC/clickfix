@@ -11,14 +11,17 @@
 To get going with ClickFix, simply download the [latest executable](https://github.com/cemrajc/clickfix/releases/latest), **put it in its own folder** and run it. Because ClickFix is completely portable, it runs without installation - you could even run it off a thumb-drive. Keep in mind that it will create a settings file in the folder you put it in.
 
 **2: First Run**<br>
-When started for the first time, the "About" window pops up. Behind this window is the settings panel (this can be accessed later from the tray menu). To get ClickFix up and running, select the mouse button that needs fixing. To see if the fix worked, try highlighting a large block of text and see if you get interrupted at any point. Normally the default pressure works well, but if the fix only works sometimes or *doesn't work at all*, try increasing the "pressure" using the slider. Don't forget to hit apply after to make changes :wink:
-I reccommend you choose to start ClickFix with Windows (for convenience).
+When started for the first time, the "About" window pops up. Behind this window is the settings panel (this can be accessed later from the tray menu). To get ClickFix up and running, select the mouse button that needs fixing. To see if the fix worked, try highlighting a large block of text and see if you get interrupted at any point. Normally the default `pressure` setting works well, but if the fix only works sometimes or *doesn't work at all*, try increasing the `pressure` slider. Don't forget to hit apply after to make changes :wink:
+
+I reccommend you also enable `Start on Windows Startup` (for convenience).<br>
 When you're satisfied that everything works as it should, hit Ok and ClickFix will never bother you again.
 
 **3: Forever After That**<br>
 ClickFix will run in the background, keeping a leash on your mouse.
-If you ever want to quickly change some settings, right click on the tray icon and under 'Quick Options' you have access to some of the standard settings.
-If you have a feature request or you come across any bugs, please start an [issue tracker](https://github.com/cemrajc/clickfix/issues) and I'll try to accommodate you as soon as possible.
+If you ever want to quickly change some settings, right click on the tray icon and under 'Quick Options' you have access to some of the standard settings.<br>
+If you have a **feature request** or you **come across any bugs**, please start an [issue tracker](https://github.com/cemrajc/clickfix/issues) and I'll try to accommodate you as soon as possible.
+
+**Tip:** You can double click the tray icon to access the full settings window.
 
 > Very special thanks to the [AutoHotKey crew](https://autohotkey.com/) - their scripting language made this super easy.
 
@@ -43,7 +46,11 @@ What started with an idea became ClickFix. With this very simple software, we ho
 
 **ClickFix doesn't claim to tame *all* wild mice.**
 
-One noticeable drawback of ClickFix, is that users which rely on extremely low latency input (gamers, editors, 3D modelers, digital artists) **will notice a slight lag** from when they physically release the button, to when it is 'released' in the software. Also, input devices such as a pen tablet - often used in conjunction with a mouse - will also be affected; if you have a pen tablet, you can probably afford a replacement mouse though :smile:
+One noticeable drawback of ClickFix, is that users which rely on extremely low latency input (gamers, editors, 3D modelers, digital artists) will notice a *slight* lag from when they physically release the button, to when it is 'released' in the software. The severity of this lag depends on the pressure slider. **The general rule is this:**
+
+<blockquote style="color: #111; font-size:110%;">  More pressure &rarr; better fix :smile: &rarr; more lag :frown: </blockquote>
+
+Mouse-type input devices that may not be broken (such as a pen tablet) will also be affected; although if you have a pen tablet, you can probably *afford* a replacement mouse :smile:
 
 Sometimes, the mouse buttons extra click happens *just* too late for the fix to work - so it will send an extra click. This is a very rare occurrence, but I have observed it myself.
 
