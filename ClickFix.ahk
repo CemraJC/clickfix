@@ -3,7 +3,7 @@
 
 
 
-ver := "1.1.2"
+ver := "2.1.0"
 settings_file = ClickFix_Settings.ini
 startup_shortcut := A_Startup . "\ClickFix.lnk"
 settings := Object()
@@ -13,11 +13,13 @@ settings := Object()
 settings["lb"] := ["Mouse", "left_button", false]
 settings["mb"] := ["Mouse", "middle_button", false]
 settings["rb"] := ["Mouse", "right_button", false]
+settings["pr"] := ["General", "pressure", 50]
 settings["sww"] := ["General", "startup_run", false]
 
 ; Let's assume that this is a first-run, since there's no settings
 if !FileExist(settings_file) {
     write_settings(settings)
+    settingsGui()
     about()
 }
 
@@ -36,23 +38,21 @@ Menu, options, Add, Fix Middle Button, fmb
 Menu, options, Add, Fix Right Button, frb
 Menu, options, Add
 Menu, options, Add, Start with Windows, sww
-Menu, Tray, Add, Options, :options
+Menu, Tray, Add, Quick Options, :options
+Menu, Tray, Add, Full Settings, settingsGui
 
 Menu, Tray, Add,
 Menu, Tray, Add, Reset, reset
 Menu, Tray, Add, Exit, exit
 Menu, Tray, Tip, ClickFix - Tame your mouse
 
+; Define the settings GUI
 settingsGui() {
-    global check_left_button
-    global check_middle_button
-    global check_right_button
-    global check_start_with_windows
-    global slide_hysteresis
+    global
 
     ; Initialization
     Gui, Settings: New
-    Gui, Settings: -Resize -MaximizeBox +AlwaysOnTop
+    Gui, Settings: -Resize -MaximizeBox +AlwaysOnTop +OwnDialogs
 
     ; Title and Copyright
     Gui, Settings:font, s18, Arial
@@ -75,14 +75,14 @@ settingsGui() {
     Gui, Settings:Add, Text, Left w210 yp+35, Other Settings:
     Gui, Add, Checkbox, yp+25 vcheck_start_with_windows, Start on Windows Startup
     Gui, Settings:font, s10 c810000, Arial
-    Gui, Settings:Add, Button, yp+25 w210, Reset everything to default
+    Gui, Settings:Add, Button, yp+25 w210 gSettingsButtonReset, Reset everything to default
 
     ; Advanced Settings
     Gui, Settings:font, s8 c505050, Trebuchet MS
     Gui, Settings:Add, GroupBox, xp+245 y112 w235 h190, Advanced
     Gui, Settings:font, s10 c101013, Trebuchet MS
-    Gui, Settings:Add, Text, Left w210 xp+12 yp+22, Hysteresis Slider
-    Gui, Add, Slider, yp+20 xp-6 w218 vslide_hysteresis, 20
+    Gui, Settings:Add, Text, Left w210 xp+12 yp+22, "Pressure" for the fix:
+    Gui, Add, Slider, yp+20 xp-6 w218 vslide_pressure, 20
     Gui, Settings:font, s8 c101013, Arial
     Gui, Settings:Add, Text, Left w210 yp+22 xp+6, Slide this more to the right if ClickFix isn't working properly all the time. Don't forget to hit "Apply" between changes.
 
@@ -91,10 +91,48 @@ settingsGui() {
     Gui, Settings:Add, Button, xp+80 Y310 w75, Apply
     Gui, Settings:Add, Button, xp+80 Y310 w75, Cancel
 
+    loadSettingsToGui()
     Gui, show, W530 H350 center, ClickFix Settings
 }
 settingsGui()
 
+; GUI Actions
+settingsButtonOk() {
+    pullSettingsFromGui()
+    Gui, Settings:Destroy
+}
+settingsButtonApply(){
+    pullSettingsFromGui()
+}
+loadSettingsToGui(){
+    global
+    GuiControl, , check_left_button, % settings["lb"][3]
+    GuiControl, , check_middle_button, % settings["mb"][3]
+    GuiControl, , check_right_button, % settings["rb"][3]
+    GuiControl, , slide_pressure, % settings["pr"][3]
+    GuiControl, , check_start_with_windows, % settings["sww"][3]
+}
+pullSettingsFromGui(){
+    global
+    Gui, Settings:Submit, NoHide
+    settings["lb"][3] := check_left_button
+    settings["mb"][3] := check_middle_button
+    settings["rb"][3] := check_right_button
+    settings["pr"][3] := slide_pressure
+    settings["sww"][3] := check_start_with_windows
+    save()
+    update_sww_state(settings["sww"][3])
+}
+settingsButtonCancel(){
+    Gui, Settings:Destroy
+}
+settingsButtonReset() {
+    Gui, Settings: +OwnDialogs
+    reset()
+}
+slidePressureScale(pressure){
+    return (pressure * pressure)/40 + 5
+}
 
 ; Load in the menu state to reflect the settings
 ; Need a neater solution...
@@ -149,14 +187,15 @@ save()
 update_sww_state(settings["sww"][3])
 return
 
-reset:
-MsgBox, 0x34, Are you sure?, This will completely wipe all settings and exit the program.
-IfMsgBox, No
-    return
-FileDelete, %settings_file%
-startup_shortcut_destroy()
-ExitApp
-return
+reset(){
+    global
+    MsgBox, 0x34, Are you sure?, This will completely wipe all settings and exit the program.
+    IfMsgBox, No
+        return
+    FileDelete, %settings_file%
+    startup_shortcut_destroy()
+    ExitApp
+}
 
 exit:
 save()
@@ -232,9 +271,10 @@ startup_shortcut_destroy() {
     FileDelete, %startup_shortcut%
 }
 
-about(){
-global ver
-MsgBox, 0x40, Welcome to ClickFix!, % "Thank you for using ClickFix!`n`nTo get started, simply right click on the tray icon and under 'Options', select the name of the button on your mouse that's giving you grief. You can also choose to start ClickFix with Windows here. ClickFix will run in the background, keeping a leash on your mouse. It is always available from the taskbar tray area (if it's running)`n`nThis software is at version " . ver . ".`nCopyright 2016 Jason Cemra - released under the GPLv3.`nVery special thanks to the AutoHotKey crew, for making this program easy."
+about() {
+    global ver
+    Gui, Settings:+OwnDialogs
+    MsgBox, 0x40, Welcome to ClickFix!, % "Thank you for using ClickFix!`n`nClickFix is always available from the taskbar tray area (if it's running). Whether ClickFix works for you or it doesn't, send me a message! I'm always looking for ways to improve the software: cemrajc+clickfix@gmail.com.`n`nThis software is at version " . ver . ".`nCopyright 2016 Jason Cemra - released under the GPLv3.`nSpecial thanks to the AutoHotKey crew, for making this program easy."
 }
 
 
