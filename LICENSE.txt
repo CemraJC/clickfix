@@ -1,5 +1,5 @@
 ClickFix - Stop annoying repeat clicks, tame your mouse.
-Copyright 2016 Jason Cemra
+Copyright (c) 2016 Jason Cemra
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 3 as
