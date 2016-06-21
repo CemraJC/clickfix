@@ -13,7 +13,7 @@ settings := Object()
 settings["lb"] := ["Mouse", "left_button", false]
 settings["mb"] := ["Mouse", "middle_button", false]
 settings["rb"] := ["Mouse", "right_button", false]
-settings["pr"] := ["General", "pressure", 50]
+settings["pr"] := ["General", "pressure", 25]
 settings["sww"] := ["General", "startup_run", false]
 
 ; Let's assume that this is a first-run, since there's no settings
@@ -40,6 +40,8 @@ Menu, options, Add
 Menu, options, Add, Start with Windows, sww
 Menu, Tray, Add, Quick Options, :options
 Menu, Tray, Add, Full Settings, settingsGui
+Menu, Tray, Default, Full Settings
+
 
 Menu, Tray, Add,
 Menu, Tray, Add, Reset, reset
@@ -84,7 +86,7 @@ settingsGui() {
     Gui, Settings:Add, Text, Left w210 xp+12 yp+22, "Pressure" for the fix:
     Gui, Add, Slider, yp+20 xp-6 w218 vslide_pressure, 20
     Gui, Settings:font, s8 c101013, Arial
-    Gui, Settings:Add, Text, Left w210 yp+22 xp+6, Slide this more to the right if ClickFix isn't working properly all the time. Don't forget to hit "Apply" between changes.
+    Gui, Settings:Add, Text, Left w210 yp+32 xp+6, Slide this more to the right if ClickFix isn't working properly all the time. Don't forget to hit "Apply" between changes.
 
     ; Buttons
     Gui, Settings:Add, Button, Default xp-12 Y310 w75, Ok
@@ -94,7 +96,6 @@ settingsGui() {
     loadSettingsToGui()
     Gui, show, W530 H350 center, ClickFix Settings
 }
-settingsGui()
 
 ; GUI Actions
 settingsButtonOk() {
@@ -122,6 +123,8 @@ pullSettingsFromGui(){
     settings["sww"][3] := check_start_with_windows
     save()
     update_sww_state(settings["sww"][3])
+    set_hotkey_states()
+    updateTrayMenuState()
 }
 settingsButtonCancel(){
     Gui, Settings:Destroy
@@ -136,22 +139,26 @@ slidePressureScale(pressure){
 
 ; Load in the menu state to reflect the settings
 ; Need a neater solution...
-if (settings["lb"][3] == true) {
-    Menu, options, Check, Fix Left Button
+updateTrayMenuState(){
+    global
+    if (settings["lb"][3] == true) {
+        Menu, options, Check, Fix Left Button
+    }
+
+    if (settings["mb"][3] == true) {
+        Menu, options, Check, Fix Middle Button
+    }
+
+    if (settings["rb"][3] == true) {
+        Menu, options, Check, Fix Right Button
+    }
+
+    if (settings["sww"][3] == true) {
+        Menu, options, Check, Start With Windows
+    }
 }
 
-if (settings["mb"][3] == true) {
-    Menu, options, Check, Fix Middle Button
-}
-
-if (settings["rb"][3] == true) {
-    Menu, options, Check, Fix Right Button
-}
-
-if (settings["sww"][3] == true) {
-    Menu, options, Check, Start With Windows
-}
-
+updateTrayMenuState()
 Sleep, 500  ; There seems to be an issue with the startup shortcut disappearing
 update_sww_state(settings["sww"][3])
 return
@@ -284,10 +291,9 @@ MButton::
 Click Middle Down
 is_down := 1
 while (is_down) {
-    Sleep 35
+    Sleep % slidePressureScale(settings["pr"][3])
     is_down := GetKeyState("MButton", "P")
 }
-Sleep 50
 Click Middle Up
 return
 
@@ -295,10 +301,9 @@ LButton::
 Click Left Down
 is_down := 1
 while (is_down) {
-    Sleep 5
+    Sleep % slidePressureScale(settings["pr"][3])
     is_down := GetKeyState("LButton", "P")
 }
-Sleep 10
 Click Left Up
 return
 
@@ -306,9 +311,8 @@ RButton::
 Click Right Down
 is_down := 1
 while (is_down) {
-    Sleep 5
+    Sleep % slidePressureScale(settings["pr"][3])
     is_down := GetKeyState("RButton", "P")
 }
-Sleep 10
 Click Right Up
 return

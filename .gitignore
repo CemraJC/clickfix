@@ -1,4 +1,5 @@
 *.psd
+*.exe
 *ffs_*
 *.ini
 *.lnk

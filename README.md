@@ -11,10 +11,12 @@
 To get going with ClickFix, simply download the [latest executable](https://github.com/cemrajc/clickfix/releases/latest), **put it in its own folder** and run it. Because ClickFix is completely portable, it runs without installation - you could even run it off a thumb-drive. Keep in mind that it will create a settings file in the folder you put it in.
 
 **2: First Run**<br>
-When started for the first time, the "About" window pops up. Right click on the tray icon and under 'Options' click the name of the button on your mouse that's giving you grief. You can choose to start ClickFix with Windows in this menu as well (for convenience).
+When started for the first time, the "About" window pops up. Behind this window is the settings planel (this is accessed by the right click menu)
+I reccommend you choose to start ClickFix with Windows (for convenience).
 
 **3: Forever After That**<br>
 ClickFix will run in the background, keeping a leash on your mouse.
+If you ever want to quickly change some settings, right click on the tray icon and under 'Quick Options' you have access to some of the standard settings.
 
 > Very special thanks to the [AutoHotKey crew](https://autohotkey.com/) - their scripting language made this super easy.
 
