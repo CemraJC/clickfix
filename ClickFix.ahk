@@ -43,6 +43,58 @@ Menu, Tray, Add, Reset, reset
 Menu, Tray, Add, Exit, exit
 Menu, Tray, Tip, ClickFix - Tame your mouse
 
+settingsGui() {
+    global check_left_button
+    global check_middle_button
+    global check_right_button
+    global check_start_with_windows
+    global slide_hysteresis
+
+    ; Initialization
+    Gui, Settings: New
+    Gui, Settings: -Resize -MaximizeBox +AlwaysOnTop
+
+    ; Title and Copyright
+    Gui, Settings:font, s18, Arial
+    Gui, Settings:Add, Text, Center W500, ClickFix Settings
+    Gui, Settings:font, s8 c808080, Trebuchet MS
+    Gui, Settings:Add, Text, Center W500 yp+26, Copyright (c) 2016 Jason Cemra
+
+    ; Leading Paragraph
+    Gui, Settings:font, s10 c101013, Arial
+    Gui, Settings:Add, Text, Left W500 yp+22, Choose which mouse button needs fixing - you can select multiple.`nIf you're having issues, adjust the slider until your clicks are fixed!
+
+    ; Standard Settings
+    Gui, Settings:font, s8 c505050, Trebuchet MS
+    Gui, Settings:Add, GroupBox, w235 h220, Standard Settings
+    Gui, Settings:font, s10 c10101f, Trebuchet MS
+    Gui, Settings:Add, Text, Left w210 xp+12 yp+22, Choose mouse buttons to fix:
+    Gui, Add, Checkbox, yp+25 vcheck_left_button, Fix Left Mouse Button
+    Gui, Add, Checkbox, yp+25 vcheck_middle_button, Fix Middle Mouse Button
+    Gui, Add, Checkbox, yp+25 vcheck_right_button, Fix Right Mouse Button
+    Gui, Settings:Add, Text, Left w210 yp+35, Other Settings:
+    Gui, Add, Checkbox, yp+25 vcheck_start_with_windows, Start on Windows Startup
+    Gui, Settings:font, s10 c810000, Arial
+    Gui, Settings:Add, Button, yp+25 w210, Reset everything to default
+
+    ; Advanced Settings
+    Gui, Settings:font, s8 c505050, Trebuchet MS
+    Gui, Settings:Add, GroupBox, xp+245 y112 w235 h190, Advanced
+    Gui, Settings:font, s10 c101013, Trebuchet MS
+    Gui, Settings:Add, Text, Left w210 xp+12 yp+22, Hysteresis Slider
+    Gui, Add, Slider, yp+20 xp-6 w218 vslide_hysteresis, 20
+    Gui, Settings:font, s8 c101013, Arial
+    Gui, Settings:Add, Text, Left w210 yp+22 xp+6, Slide this more to the right if ClickFix isn't working properly all the time. Don't forget to hit "Apply" between changes.
+
+    ; Buttons
+    Gui, Settings:Add, Button, Default xp-12 Y310 w75, Ok
+    Gui, Settings:Add, Button, xp+80 Y310 w75, Apply
+    Gui, Settings:Add, Button, xp+80 Y310 w75, Cancel
+
+    Gui, show, W530 H350 center, ClickFix Settings
+}
+settingsGui()
+
 
 ; Load in the menu state to reflect the settings
 ; Need a neater solution...

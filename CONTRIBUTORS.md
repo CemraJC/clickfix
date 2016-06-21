@@ -52,7 +52,7 @@ Thanks for taking the time to read this - it really helps.
 * Port the software to Unix-like systems
 * Sponsor a proper domain-name for the website
 * Get us a mention in a notable place where potential users frequent - maximise the benfit to others
-    + *Non-exhausitve list of notable places*
+    + *Non-exhausitve list of notable places:*
     + YouTube video of a significant repairs/tech channel (>8,000 subs / > 15,000 views)
     + Any popular (>2,000 readers) publication (news, blog, journal - etc.)
     + LifeHacker (article)
