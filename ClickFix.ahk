@@ -45,6 +45,7 @@ Menu, Tray, Default, Full Settings
 
 Menu, Tray, Add,
 Menu, Tray, Add, Restart, restart
+Menu, Tray, Add,
 Menu, Tray, Add, Reset, reset
 Menu, Tray, Add, Exit, exit
 Menu, Tray, Tip, ClickFix - Tame your mouse
@@ -108,12 +109,11 @@ settingsButtonApply(){
 }
 loadSettingsToGui(){
     global
-    GuiControl, , check_left_button, % settings["lb"][3]
-    GuiControl, , check_middle_button, % settings["mb"][3]
-    GuiControl, , check_right_button, % settings["rb"][3]
-    GuiControl, , slide_pressure, % settings["pr"][3]
-    GuiControl, , check_start_with_windows, % settings["sww"][3]
-    updateTrayMenuState()
+    GuiControl, Settings:, check_left_button, % settings["lb"][3]
+    GuiControl, Settings:, check_middle_button, % settings["mb"][3]
+    GuiControl, Settings:, check_right_button, % settings["rb"][3]
+    GuiControl, Settings:, slide_pressure, % settings["pr"][3]
+    GuiControl, Settings:, check_start_with_windows, % settings["sww"][3]
 }
 pullSettingsFromGui(){
     global
@@ -145,18 +145,26 @@ updateTrayMenuState(){
     global
     if (settings["lb"][3] == true) {
         Menu, options, Check, Fix Left Button
+    } else {
+        Menu, options, UnCheck, Fix Left Button
     }
 
     if (settings["mb"][3] == true) {
         Menu, options, Check, Fix Middle Button
+    } else {
+        Menu, options, UnCheck, Fix Middle Button
     }
 
     if (settings["rb"][3] == true) {
         Menu, options, Check, Fix Right Button
+    } else {
+        Menu, options, UnCheck, Fix Right Button
     }
 
     if (settings["sww"][3] == true) {
         Menu, options, Check, Start With Windows
+    } else {
+        Menu, options, UnCheck, Start With Windows
     }
 }
 
@@ -173,6 +181,7 @@ Menu, options, ToggleCheck, Fix Left Button
 settings["lb"][3] := !settings["lb"][3]
 save()
 set_hotkey_states()
+loadSettingsToGui()
 return
 
 fmb:
@@ -180,6 +189,7 @@ Menu, options, ToggleCheck, Fix Middle Button
 settings["mb"][3] := !settings["mb"][3]
 save()
 set_hotkey_states()
+loadSettingsToGui()
 return
 
 frb:
@@ -187,6 +197,7 @@ Menu, options, ToggleCheck, Fix Right Button
 settings["rb"][3] := !settings["rb"][3]
 save()
 set_hotkey_states()
+loadSettingsToGui()
 return
 
 sww:
@@ -194,6 +205,7 @@ menu, options, ToggleCheck, Start With Windows
 settings["sww"][3] := !settings["sww"][3]
 save()
 update_sww_state(settings["sww"][3])
+loadSettingsToGui()
 return
 
 reset(){
