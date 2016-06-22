@@ -48,7 +48,7 @@ What started with an idea became ClickFix. With this very simple software, we ho
 
 One noticeable drawback of ClickFix, is that users which rely on extremely low latency input (gamers, editors, 3D modelers, digital artists) will notice a *slight* lag from when they physically release the button, to when it is 'released' in the software. The severity of this lag depends on the pressure slider. **The general rule is this:**
 
-<blockquote style="color: #111; font-size:110%;">  More pressure &rarr; better fix :smile: &rarr; more lag :frown: </blockquote>
+<blockquote style="color: #111; font-size:110%;">  More pressure &rarr; better fix :smile: &rarr; more lag :confused: </blockquote>
 
 Mouse-type input devices that may not be broken (such as a pen tablet) will also be affected; although if you have a pen tablet, you can probably *afford* a replacement mouse :smile:
 
