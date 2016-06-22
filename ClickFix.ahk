@@ -44,6 +44,7 @@ Menu, Tray, Default, Full Settings
 
 
 Menu, Tray, Add,
+Menu, Tray, Add, Restart, restart
 Menu, Tray, Add, Reset, reset
 Menu, Tray, Add, Exit, exit
 Menu, Tray, Tip, ClickFix - Tame your mouse
@@ -112,6 +113,7 @@ loadSettingsToGui(){
     GuiControl, , check_right_button, % settings["rb"][3]
     GuiControl, , slide_pressure, % settings["pr"][3]
     GuiControl, , check_start_with_windows, % settings["sww"][3]
+    updateTrayMenuState()
 }
 pullSettingsFromGui(){
     global
@@ -282,6 +284,11 @@ about() {
     global ver
     Gui, Settings:+OwnDialogs
     MsgBox, 0x40, Welcome to ClickFix!, % "Thank you for using ClickFix!`n`nClickFix is always available from the taskbar tray area (if it's running). Whether ClickFix works for you or it doesn't, send me a message! I'm always looking for ways to improve the software: cemrajc+clickfix@gmail.com.`n`nThis software is at version " . ver . ".`nCopyright 2016 Jason Cemra - released under the GPLv3.`nSpecial thanks to the AutoHotKey crew, for making this program easy."
+}
+
+restart() {
+    Reload
+    ExitApp
 }
 
 
