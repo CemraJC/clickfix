@@ -2,6 +2,7 @@
 *ffs_*
 *.ini
 *.lnk
+*.exe
 _site/
 gitignore/
 node_modules/

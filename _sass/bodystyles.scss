@@ -57,6 +57,12 @@
             & .bar-section {
                 display: block;
                 margin: $pad*2 0;
+                & img.demo {
+                    display: block;
+                    width: 400px;
+                    margin: 0 auto;
+                    box-shadow: 0.2em 0.4em 1em #555;
+                }
                 & img.display {
                     display: inline-block;
                     margin-bottom: 3em;
@@ -69,6 +75,10 @@
                     vertical-align: middle;
                     display: inline-block;
                     width: 70%;
+                    &.stretch {
+                        margin: 2em 0;
+                        width: 100%;
+                    }
                 }
             }
 
