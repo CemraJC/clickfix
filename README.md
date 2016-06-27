@@ -7,6 +7,8 @@ No domain name yet, unfortunately.
 
 Copyright 2016 Jason Cemra
 
+## [Download Clickfix](https:/cemrajc.github.io/clickfix/releases)
+
 # Todo
 
 * Add a nice parallax effect for the splash
