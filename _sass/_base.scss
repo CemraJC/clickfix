@@ -1,11 +1,13 @@
 body, html {
     height: 100%;
-    font-size: 0.96em;
+    font-size: 0.96rem;
+    min-width: 14.5rem;
 }
 
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 a {

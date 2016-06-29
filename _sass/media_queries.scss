@@ -1,0 +1,77 @@
+@media screen and (max-width: 28rem) {
+    header.splashground {
+        position: relative;
+        .title {
+            z-index: 2;
+            & p.tagline {
+                text-indent: 0;
+            }
+        }
+    }
+    .container .main article.body {
+        & h1.headline {
+            font-size: 150%;
+        }
+        & .bar-section {
+            margin: 0.5rem 0;
+            & div.text {
+                display: block !important;
+                margin: 0 auto;
+                width: 100%;
+                text-align: justify;
+            }
+            & img.display {
+                display: block !important;
+                margin: 0 auto !important;
+                min-width: 5.5rem;
+                &.right { float: none !important; }
+                &.left  { float: none !important; }
+            }
+        }
+    }
+
+    .container .main .download-bar {
+        font-size: 80%;
+    }
+
+    a.download-button {
+        display: block;
+        text-align: center;
+        text-indent: -1rem;
+    }
+}
+
+@media screen and (max-width: 42.5rem) {
+    body {
+        font-size: 0.85em;
+        // text-align: center !important;
+        .title h1 {
+            font-size: 300% !important;
+        }
+    }
+    .container .main article.body {
+        & h1.headline {
+            font-size: 210%;
+        }
+        & .bar-section {
+            margin: 2.5rem 0;
+        }
+    }
+    span[hs] {
+        display: none !important;
+    }
+    a.github-reference img {
+        text-align: left;
+        padding: 0 !important;
+    }
+    a.download-button img {
+        padding: 5px 2px;
+    }
+
+    footer .creds, footer .owner {
+        float: none;
+        width: 100%;
+        padding: 0.5rem 0;
+        text-align: center;
+    }
+}

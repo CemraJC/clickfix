@@ -3,9 +3,9 @@ header.splashground {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 20% 0;
 
     position: relative;
-    height: 50em;
     background: #15161A;
     background-image: url(../images/splash.jpg);
     background-size: cover;
@@ -17,6 +17,8 @@ header.splashground {
     z-index: 1;
 
     .title {
+        position: relative;
+        top: 2rem;
         text-align: center;
         color: #DDDBD0;
 
@@ -35,13 +37,5 @@ header.splashground {
             font-family: $serif;
             font-style: italic;
         }
-    }
-
-    img.parallax {
-        display: block;
-        position: absolute;
-        right: 2em;
-        top: 30em;
-        width: 22%;
     }
 }
