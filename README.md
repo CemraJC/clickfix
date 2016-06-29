@@ -2,13 +2,9 @@
 ###Tame your mouse
 > GitHub Pages website for the ClickFix project
 
-Simple - powered by Jekyll, hosted by Github.
-No domain name yet, unfortunately.
+Simple - powered by Jekyll, hosted by Github. <br>
+For now, you can visit the project page at [clickfix.cf](http://clickfix.cf)
 
-Copyright 2016 Jason Cemra
+*Copyright 2016 Jason Cemra*
 
 ## [Download Clickfix](https:/cemrajc.github.io/clickfix/releases)
-
-# Todo
-
-* Add a nice parallax effect for the splash
