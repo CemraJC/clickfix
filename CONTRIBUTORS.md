@@ -50,7 +50,7 @@ Thanks for taking the time to read this - it really helps.
 
 * Port the software to OSX
 * Port the software to Unix-like systems
-* Sponsor a proper domain-name for the website
+* Sponsor a proper domain-name for the website (TLD must be one of `.com`, `.io` or `.org`)
 * Get us a mention in a notable place where potential users frequent - maximise the benfit to others
     + *Non-exhausitve list of notable places:*
     + YouTube video of a significant repairs/tech channel (>8,000 subs / > 15,000 views)
