@@ -1,6 +1,6 @@
 # To Contribute
 
-If you want to be super helpful, do something that's on the todo list below :)
+Tl;DR, if you want to be super helpful, do something that's on the todo list below :)
 
 As with any open source project, you can go ahead and make your changes and integrations however fits under the terms of the license (see LICENSE.txt). However, if you want your changes to be merged in, please make sure that you are aware of the Contributor License Agreement and that contributions follow these guidelines:
 
@@ -59,12 +59,11 @@ Thanks for taking the time to read this - it really helps.
     * How To Geek (article)
     + Tom's Hardware (main threads)
 
+* Fix the Snipping Tool bug!
+
 #### Minor
 > You get internet cred and your username in the commit logs for doing these
 
 * Make the icon look even cooler
-* Fix the lag issue (under "Caveats" in README.md)
 * Support for more buttons (only if the problem exists)
-* Fix up the gh-pages branch history (looks bad)
-* Optimize the gh-pages site images and responsiveness (scaling issues)
 * Make a test ground for new mice / issues (web interface - capture clicks, flag misclicks)
