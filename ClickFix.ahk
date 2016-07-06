@@ -3,7 +3,7 @@
 
 
 
-ver := "2.1.0"
+ver := "2.2.0"
 settings_file = ClickFix_Settings.ini
 startup_shortcut := A_Startup . "\ClickFix.lnk"
 settings := Object()
