@@ -37,7 +37,7 @@ If you can't get anything to work then I would like to help with 'fixing ClickFi
     - Open ClickFix and confirm that the problem is still occurring
     - Close / disable ClickFix
     - Open the command prompt (search for cmd.exe)
-    - Paste in the command `ps -flaWs > C:\list_of_programs.txt`
+    - Paste in the command `tasklist > C:\list_of_programs.txt`
         - Right click to paste
     - Press <kbd>Enter</kbd> to run the command
     - Go to your C drive and see if the list is there
