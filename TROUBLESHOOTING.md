@@ -1,6 +1,7 @@
 # Having problems?
 
 Sorry about that :(
+
 It's an annoying fact of software development that small-time programs don't always work for everyone. I've compiled a list of common problems and some things you can try if you even have the problem.
 
 ## The fix doesn't work
@@ -45,63 +46,6 @@ If you can't get anything to work then I would like to help with 'fixing ClickFi
         - If there's still no list, then just skip this whole section - don't waste your time
     - If it all worked, close the command prompt and attach the list to the email you're about to send :P
 
-<a href="mailto:cemrajc+clickfix@gmail.com" title="cemrajc+clickfix@gmail.com"><button>Send me an email! :smile:</button></a>
+<a href="mailto:cemrajc+clickfix@gmail.com" title="cemrajc+clickfix@gmail.com">Send me an email! :smile:</a>
 
 Note that it may take me up to a week to see your email - be patient, I will try to respond within two weeks.
-
-#### Email Template
-If you don't want to waste time putting together an email, then I've made a template for you. If something doesn't quite match or you have things to add / you have a problem that isn't listed, then you'll need to put that in yourself :/
-
-**Some info I need:**<br>
-Operating system name: <select name="os">
-    <option selected>Windows 10</option>
-    <option>Windows 8</option>
-    <option>Windows 7</option>
-</select><br>
-Problem you're having:
-<select name="issue">
-    <option value="the left mouse button is disabled when I run ClickFix.">Left mouse disabled</option>
-    <option value="I can't double click - even after trying everything on the troubleshooting list.">No double click</option>
-    <option value="it doesn't matter what I do with the slider - my mouse still randomly clicks multiple times when I only press the mouse button once.">The fix doesn't work</option>
-</select><br>
-Brand / name of your mouse: <input type="text" name="mousebrand" value="Logitech MX Master"><br>
-
-**Subject Line:** ClickFix doesn't work for me
-
-**Body of email:** (copy and paste everything that follows)
-
-Hello!
-
-Unfortunately, ClickFix is a bit broken for me. Maybe you can help?
-
-See, the problem is, <span class="fill_in" filler="issue">$ISSUE</span><br>
-My operating system is <span class="fill_in" filler="os">$OPERATING_SYSTEM</span><br>
-
-Just in case you needed to know, my mouse is a "<span class="fill_in" filler="mousebrand">$TYPE_OF_MOUSE</span>"
-
-<script>
-    document.addEventListener("DOMContentLoaded", function(){
-        var elems = {
-            os: document.querySelector("select[name=os]"),
-            issue: document.querySelector("select[name=issue]"),
-            brand: document.querySelector("input[name=mousebrand]")
-        }
-
-        for (var el in elems) {
-            elems[el].addEventListener('change', updateTemplate);
-        }
-
-        updateTemplate();
-
-        function updateTemplate(){
-            var fill;
-            for (var el in elems) {
-                fill = document.querySelector("span.fill_in[filler=" + elems[el].name + "]");
-                if (fill.innerHTML) {
-                    fill.innerHTML = elems[el].value;
-                }
-            }
-        }
-    })
-</script>
-

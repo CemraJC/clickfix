@@ -56,7 +56,7 @@ Sometimes, the mouse buttons extra click happens *just* too late for the fix to 
 
 **The Company Motto**<br>
 Other than those minor issues, **the benefits of ClickFix are undeniably worth the draw backs.**
-<blockquote style="color: #111; font-size:110%;"> *ClickFix takes an unusable mouse and makes it bearable.*</blockquote>
+<blockquote style="color: #111; font-size:110%;">ClickFix takes an unusable mouse and makes it bearable.</blockquote>
 
 Unfortunately, this software is limited by the test cases we have access to. Since I only have access to one faulty mouse, it's entirely possible that this solution only works for me. **If you're willing to leave feedback, send me a message telling me if it did or did not work.**
 
