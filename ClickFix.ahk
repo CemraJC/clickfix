@@ -26,7 +26,7 @@ if !FileExist(settings_file) {
 ; Initialize the program's functionality
 read_settings(settings)
 set_hotkey_states()
-
+settingsGui()
 
 ; Set up the right click menu
 Menu, Tray, NoStandard
@@ -56,7 +56,7 @@ settingsGui() {
 
     ; Initialization
     Gui, Settings: New
-    Gui, Settings: -Resize -MaximizeBox +AlwaysOnTop +OwnDialogs
+    Gui, Settings: -Resize -MaximizeBox +OwnDialogs
 
     ; Title and Copyright
     Gui, Settings:font, s18, Arial
@@ -86,8 +86,9 @@ settingsGui() {
     Gui, Settings:Add, GroupBox, xp+245 y112 w235 h190, Advanced
     Gui, Settings:font, s10 c101013, Trebuchet MS
     Gui, Settings:Add, Text, Left w210 xp+12 yp+22, "Pressure" for the fix:
-    Gui, Add, Slider, yp+20 xp-6 w218 vslide_pressure, 20
+    Gui, Add, Slider, yp+20 xp-6 w218 ToolTip vslide_pressure gSettingsPressureSlider, 20
     Gui, Settings:font, s8 c101013, Arial
+    Gui, Settings:Add, Text, Left w210 yp+32 xp+6 vslide_readout, 0.
     Gui, Settings:Add, Text, Left w210 yp+32 xp+6, Slide this more to the right if ClickFix isn't working properly all the time. Don't forget to hit "Apply" between changes.
 
     ; Buttons
@@ -100,6 +101,10 @@ settingsGui() {
 }
 
 ; GUI Actions
+settingsPressureSlider() {
+    global
+    GuiControl, Settings:, slide_readout, % slidePressureScale(slide_pressure)
+}
 settingsButtonOk() {
     pullSettingsFromGui()
     Gui, Settings:Destroy
@@ -136,7 +141,7 @@ settingsButtonReset() {
     reset()
 }
 slidePressureScale(pressure){
-    return (pressure * pressure)/40 + 5
+    return pressure*20 + 5
 }
 
 ; Load in the menu state to reflect the settings
