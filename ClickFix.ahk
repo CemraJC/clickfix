@@ -144,9 +144,8 @@ settingsButtonReset() {
     reset()
 }
 slidePressureScale(pressure){
-    return Ceil(1.04**(pressure + 47.29754))
+    return Ceil(1.0202**(pressure + 250) - 140)
 }
-
 ; Load in the menu state to reflect the settings
 ; Need a neater solution...
 updateTrayMenuState(){
