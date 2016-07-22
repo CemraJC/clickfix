@@ -83,27 +83,29 @@ settingsGui() {
 
     ; Advanced Settings
     Gui, Settings:font, s8 c505050, Trebuchet MS
-    Gui, Settings:Add, GroupBox, xp+245 y112 w235 h190, Advanced
+    Gui, Settings:Add, GroupBox, xp+245 y106 w235 h190, Advanced
     Gui, Settings:font, s10 c101013, Trebuchet MS
     Gui, Settings:Add, Text, Left w210 xp+12 yp+22, "Pressure" for the fix:
-    Gui, Add, Slider, yp+20 xp-6 w218 ToolTip vslide_pressure gSettingsPressureSlider, 20
-    Gui, Settings:font, s8 c101013, Arial
-    Gui, Settings:Add, Text, Left w210 yp+32 xp+6 vslide_readout, 0.
-    Gui, Settings:Add, Text, Left w210 yp+32 xp+6, Slide this more to the right if ClickFix isn't working properly all the time. Don't forget to hit "Apply" between changes.
+    Gui, Add, Slider, yp+20 xp-6 w218 vslide_pressure gSettingsPressureSlider, 20
+    Gui, Settings:font, s8 c101013 w700, Arial
+    Gui, Settings:Add, Link, Left w210 yp+32 xp+6 vslide_readout, Currently 0ms of delay.
+    Gui, Settings:font, s8 c101013 w400, Arial
+    Gui, Settings:Add, Text, Left w210 yp+18, Note that the pressure scale is not linear.
+    Gui, Settings:Add, Text, Left w210 yp+18, Slide this more to the right if ClickFix isn't working properly all the time. Don't forget`nto hit "Apply" between changes.
 
     ; Buttons
-    Gui, Settings:Add, Button, Default xp-12 Y310 w75, Ok
-    Gui, Settings:Add, Button, xp+80 Y310 w75, Apply
-    Gui, Settings:Add, Button, xp+80 Y310 w75, Cancel
+    Gui, Settings:Add, Button, Default xp-12 Y302 w75, Ok
+    Gui, Settings:Add, Button, xp+80 Y302 w75, Apply
+    Gui, Settings:Add, Button, xp+80 Y302 w75, Cancel
 
     loadSettingsToGui()
-    Gui, show, W530 H350 center, ClickFix Settings
+    Gui, show, W530 H345 center, ClickFix Settings
 }
 
 ; GUI Actions
 settingsPressureSlider() {
     global
-    GuiControl, Settings:, slide_readout, % slidePressureScale(slide_pressure)
+    GuiControl, Settings:, slide_readout, % "Currently " . slidePressureScale(slide_pressure) . "ms of delay"
 }
 settingsButtonOk() {
     pullSettingsFromGui()
@@ -118,6 +120,7 @@ loadSettingsToGui(){
     GuiControl, Settings:, check_middle_button, % settings["mb"][3]
     GuiControl, Settings:, check_right_button, % settings["rb"][3]
     GuiControl, Settings:, slide_pressure, % settings["pr"][3]
+    GuiControl, Settings:, slide_readout, % "Currently " . settings["pr"][3] . "ms of delay"
     GuiControl, Settings:, check_start_with_windows, % settings["sww"][3]
 }
 pullSettingsFromGui(){
@@ -141,7 +144,7 @@ settingsButtonReset() {
     reset()
 }
 slidePressureScale(pressure){
-    return pressure*20 + 5
+    return Ceil(1.04**(pressure + 47.29754))
 }
 
 ; Load in the menu state to reflect the settings
