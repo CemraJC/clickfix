@@ -105,11 +105,12 @@ settingsGui() {
 ; GUI Actions
 settingsPressureSlider() {
     global
-    GuiControl, Settings:, slide_readout, % "Currently " . slidePressureScale(slide_pressure) . "ms of delay"
+    GuiControl, Settings:, slide_readout, % slidePressureReadout(slide_pressure)
 }
 settingsButtonOk() {
-    pullSettingsFromGui()
-    Gui, Settings:Destroy
+    if (pullSettingsFromGui()) {
+        Gui, Settings:Destroy
+    }
 }
 settingsButtonApply(){
     pullSettingsFromGui()
@@ -120,12 +121,17 @@ loadSettingsToGui(){
     GuiControl, Settings:, check_middle_button, % settings["mb"][3]
     GuiControl, Settings:, check_right_button, % settings["rb"][3]
     GuiControl, Settings:, slide_pressure, % settings["pr"][3]
-    GuiControl, Settings:, slide_readout, % "Currently " . settings["pr"][3] . "ms of delay"
+    GuiControl, Settings:, slide_readout, % slidePressureReadout(settings["pr"][3])
     GuiControl, Settings:, check_start_with_windows, % settings["sww"][3]
 }
 pullSettingsFromGui(){
     global
     Gui, Settings:Submit, NoHide
+    if (slidePressureScale(slide_pressure) >= 150) {
+        MsgBox, 0x31, Severe Lag Warning!, Warning! Setting the fix pressure above 150ms can make the mouse frustrating to use and may cause problems with double clicking.
+        IfMsgBox, Cancel
+            return false
+    }
     settings["lb"][3] := check_left_button
     settings["mb"][3] := check_middle_button
     settings["rb"][3] := check_right_button
@@ -135,6 +141,7 @@ pullSettingsFromGui(){
     update_sww_state(settings["sww"][3])
     set_hotkey_states()
     updateTrayMenuState()
+    return true
 }
 settingsButtonCancel(){
     Gui, Settings:Destroy
@@ -142,6 +149,13 @@ settingsButtonCancel(){
 settingsButtonReset() {
     Gui, Settings: +OwnDialogs
     reset()
+}
+slidePressureReadout(unscaled) {
+    suffix := ""
+    if (slidePressureScale(unscaled) >= 150) {
+        suffix := "!"
+    }
+    return "Currently " . slidePressureScale(unscaled) . "ms of delay" . suffix
 }
 slidePressureScale(pressure){
     return Ceil(1.0202**(pressure + 250) - 140)
