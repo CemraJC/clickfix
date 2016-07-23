@@ -4,6 +4,14 @@ Sorry about that :(
 
 It's an annoying fact of software development that small-time programs don't always work for everyone. I've compiled a list of common problems and some things you can try if you even have the problem.
 
+## The left mouse button is disabled
+
+If this happens to you, the first step is re-enabling your left mouse button. Right click on the ClickFix icon <img src="icon/ClickFix-icon.jpg" style="width: 18px;" height="18" width="18"> in the tray area and try to use your keyboard arrow keys to highlight `Exit` and then press <kbd>Enter</kbd>. This should re-enable your mouse clicks. If it doesn't, then ClickFix isn't causing the problem.
+
+* Try to right click. If it works, go down to the taskbar / tray area and right click on the ClickFix icon. Then, use your keyboard to hit `Restart`.
+* Try running ClickFix in compatibility mode for Windows 7. Right click on the program, go to `Properties` > `Compatibility`, check the `Run this program in compatibility mode for` box and select `Windows 7`.
+* Try left clicking on a program icon in your taskbar. If you can successfully left click, but it's broken everywhere else, then [send me an email](#email)
+
 ## The fix doesn't work
 
 * Try messing around with the slider - put it hard to the right and see if it works then.
@@ -16,13 +24,6 @@ You probably can, but the pressure slider is turned up so far that the click lag
 
 Note that with the pressure slider **at the max**, the lag / delay should be about 250ms between when you release the mouse, and when ClickFix tells the computer that you have released it.
 
-## The left mouse button is disabled
-
-If this happens to you, the first step is re-enabling your left mouse button. Right click on the ClickFix icon <img src="icon/ClickFix-icon.jpg" style="width: 18px;" height="18" width="18"> in the tray area and try to use your keyboard arrow keys to highlight `Exit` and then press <kbd>Enter</kbd>.
-
-* Try running ClickFix in compatibility mode for Windows 7. Right click on the program, go to `Properties` > `Compatibility`, check the `Run this program in compatibility mode for` box and select `Windows 7`.
-* Try to right click. If it works, go down to the taskbar / tray area and right click on the ClickFix icon. Then, use your keyboard to hit `Restart`.
-* Try left clicking on a program icon in your taskbar. If you can successfully left click, then [send me an email](#email)
 
 <a id="email"></a>
 # If all else fails

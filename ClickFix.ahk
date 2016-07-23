@@ -1,7 +1,15 @@
-#InstallMouseHook
+; --- Load directives ---
+
+; #KeyHistory 0
+; #InstallMouseHook
+; #UseHook
+#NoEnv
 #SingleInstance, force
+; #Persistent
+SendMode Input
+SetWorkingDir %A_ScriptDir%
 
-
+; --- Actual program ---
 
 ver := "2.2.0"
 settings_file = ClickFix_Settings.ini
@@ -26,10 +34,9 @@ if !FileExist(settings_file) {
 ; Initialize the program's functionality
 read_settings(settings)
 set_hotkey_states()
-settingsGui()
 
 ; Set up the right click menu
-Menu, Tray, NoStandard
+; Menu, Tray, NoStandard
 
 Menu, Tray, Add, About, about
 
@@ -192,6 +199,7 @@ updateTrayMenuState(){
 updateTrayMenuState()
 Sleep, 500  ; There seems to be an issue with the startup shortcut disappearing
 update_sww_state(settings["sww"][3])
+
 return
 
 
@@ -328,31 +336,34 @@ restart() {
 
 ; The real logic of the program - hotkeys triggered by mouse events
 MButton::
-Click Middle Down
+Critical
+SendInput {MButton Down}
 is_down := 1
 while (is_down) {
     Sleep % slidePressureScale(settings["pr"][3])
     is_down := GetKeyState("MButton", "P")
 }
-Click Middle Up
+SendInput {MButton Up}
 return
 
 LButton::
-Click Left Down
+Critical
+SendInput {LButton Down}
 is_down := 1
 while (is_down) {
     Sleep % slidePressureScale(settings["pr"][3])
     is_down := GetKeyState("LButton", "P")
 }
-Click Left Up
+SendInput {LButton Up}
 return
 
 RButton::
-Click Right Down
+Critical
+SendInput {RButton Down}
 is_down := 1
 while (is_down) {
     Sleep % slidePressureScale(settings["pr"][3])
     is_down := GetKeyState("RButton", "P")
 }
-Click Right Up
+SendInput {RButton Up}
 return
