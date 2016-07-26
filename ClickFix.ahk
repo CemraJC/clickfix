@@ -1,11 +1,8 @@
 ; --- Load directives ---
 
-#KeyHistory 0
-#InstallMouseHook
-#UseHook
 #NoEnv
 #SingleInstance, force
-#Persistent
+#InstallMouseHook
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 
@@ -33,7 +30,6 @@ if !FileExist(settings_file) {
 
 ; Initialize the program's functionality
 read_settings(settings)
-set_hotkey_states()
 
 ; Set up the right click menu
 Menu, Tray, NoStandard
@@ -146,7 +142,6 @@ pullSettingsFromGui(){
     settings["sww"][3] := check_start_with_windows
     save()
     update_sww_state(settings["sww"][3])
-    set_hotkey_states()
     updateTrayMenuState()
     return true
 }
@@ -209,7 +204,6 @@ flb:
 Menu, options, ToggleCheck, Fix Left Button
 settings["lb"][3] := !settings["lb"][3]
 save()
-set_hotkey_states()
 loadSettingsToGui()
 return
 
@@ -217,7 +211,6 @@ fmb:
 Menu, options, ToggleCheck, Fix Middle Button
 settings["mb"][3] := !settings["mb"][3]
 save()
-set_hotkey_states()
 loadSettingsToGui()
 return
 
@@ -225,7 +218,6 @@ frb:
 Menu, options, ToggleCheck, Fix Right Button
 settings["rb"][3] := !settings["rb"][3]
 save()
-set_hotkey_states()
 loadSettingsToGui()
 return
 
@@ -276,28 +268,6 @@ read_settings(ByRef settings) {
     }
 }
 
-set_hotkey_states() {
-    global settings
-    if (settings["lb"][3] == true) {
-        Hotkey, LButton, On
-    } else {
-        Hotkey, LButton, Off
-    }
-
-    if (settings["mb"][3] == true) {
-        Hotkey, MButton, On
-    } else {
-        Hotkey, MButton, Off
-    }
-
-    if (settings["rb"][3] == true) {
-        Hotkey, RButton, On
-    } else {
-        Hotkey, RButton, Off
-    }
-}
-
-; Makes sure the settings are refleched
 update_sww_state(state){
     global startup_shortcut
     if (state) {
@@ -335,35 +305,38 @@ restart() {
 
 
 ; The real logic of the program - hotkeys triggered by mouse events
+#If, settings["mb"][3]
 MButton::
 Critical
-SendInput {MButton Down}
+Click MButton Down
 is_down := 1
 while (is_down) {
     Sleep % slidePressureScale(settings["pr"][3])
     is_down := GetKeyState("MButton", "P")
 }
-SendInput {MButton Up}
+Click MButton Up
 return
 
+#If, settings["lb"][3]
 LButton::
 Critical
-SendInput {LButton Down}
+Click LButton Down
 is_down := 1
 while (is_down) {
     Sleep % slidePressureScale(settings["pr"][3])
     is_down := GetKeyState("LButton", "P")
 }
-SendInput {LButton Up}
+Click LButton Up
 return
 
+#If, settings["rb"][3]
 RButton::
 Critical
-SendInput {RButton Down}
+Send {RButton Down}
 is_down := 1
 while (is_down) {
     Sleep % slidePressureScale(settings["pr"][3])
     is_down := GetKeyState("RButton", "P")
 }
-SendInput {RButton Up}
+Send {RButton Up}
 return
