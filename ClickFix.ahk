@@ -1,9 +1,8 @@
 ; --- Load directives ---
 
-#NoEnv
 #SingleInstance, force
 #InstallMouseHook
-SendMode Input
+SendMode, Input
 SetWorkingDir %A_ScriptDir%
 
 ; --- Actual program ---
@@ -307,26 +306,25 @@ restart() {
 ; The real logic of the program - hotkeys triggered by mouse events
 #If, settings["mb"][3]
 MButton::
-Critical
-Click MButton Down
+Send {MButton Down}
 is_down := 1
 while (is_down) {
     Sleep % slidePressureScale(settings["pr"][3])
     is_down := GetKeyState("MButton", "P")
 }
-Click MButton Up
+Send {MButton Up}
 return
 
 #If, settings["lb"][3]
 LButton::
 Critical
-Click LButton Down
+Send {LButton Down}
 is_down := 1
 while (is_down) {
     Sleep % slidePressureScale(settings["pr"][3])
     is_down := GetKeyState("LButton", "P")
 }
-Click LButton Up
+Send {LButton Up}
 return
 
 #If, settings["rb"][3]
