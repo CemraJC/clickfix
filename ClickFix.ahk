@@ -1,17 +1,17 @@
 ; --- Load directives ---
 
-; #KeyHistory 0
-; #InstallMouseHook
-; #UseHook
+#KeyHistory 0
+#InstallMouseHook
+#UseHook
 #NoEnv
 #SingleInstance, force
-; #Persistent
+#Persistent
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 
 ; --- Actual program ---
 
-ver := "2.2.0"
+ver := "2.2.1"
 settings_file = ClickFix_Settings.ini
 startup_shortcut := A_Startup . "\ClickFix.lnk"
 settings := Object()
@@ -36,7 +36,7 @@ read_settings(settings)
 set_hotkey_states()
 
 ; Set up the right click menu
-; Menu, Tray, NoStandard
+Menu, Tray, NoStandard
 
 Menu, Tray, Add, About, about
 
