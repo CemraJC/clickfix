@@ -317,13 +317,13 @@ restart() {
 #If, settings["mb"][3]
 MButton::
 if (A_TickCount - last_m_down >= slidePressureScale(settings["pr"][3]) && A_TickCount - last_m_up >= slidePressureScale(settings["pr"][3])) {
-    Send {MButton Down}
+    Send {Blind}{MButton Down}
     last_m_down := A_TickCount
 }
 return
 
 MButton up::
-Send {MButton Up}
+Send {Blind}{MButton Up}
 if (A_TickCount - last_m_up >= slidePressureScale(settings["pr"][3])) {
     last_m_up := A_TickCount
 }
@@ -332,28 +332,28 @@ return
 #If, settings["lb"][3]
 LButton::
 if (A_TickCount - last_l_down >= slidePressureScale(settings["pr"][3]) && A_TickCount - last_l_up >= slidePressureScale(settings["pr"][3])) {
-    Send {LButton Down}
+    Send {Blind}{LButton Down}
     last_l_down := A_TickCount
 }
 return
 
 LButton up::
-Send {LButton Up}
+Send {Blind}{LButton Up}
 if (A_TickCount - last_l_up >= slidePressureScale(settings["pr"][3])) {
     last_l_up := A_TickCount
 }
 return
 
 #If, settings["rb"][3]
-RButton::
+*RButton::
 if (A_TickCount - last_r_down >= slidePressureScale(settings["pr"][3]) && A_TickCount - last_r_up >= slidePressureScale(settings["pr"][3])) {
-    Send {RButton Down}
+    Send {Blind}{RButton Down}
     last_r_down := A_TickCount
 }
 return
 
-RButton up::
-Send {RButton Up}
+*RButton up::
+Send {Blind}{RButton Up}
 if (A_TickCount - last_r_up >= slidePressureScale(settings["pr"][3])) {
     last_r_up := A_TickCount
 }
