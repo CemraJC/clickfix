@@ -20,6 +20,16 @@ settings["rb"] := ["Mouse", "right_button", false]
 settings["pr"] := ["General", "pressure", 25]
 settings["sww"] := ["General", "startup_run", false]
 
+; Initialize Last-click times
+last_m_down := 0
+last_m_up := 0
+
+last_l_down := 0
+last_l_up := 0
+
+last_r_down := 0
+last_r_up := 0
+
 ; Let's assume that this is a first-run, since there's no settings
 if !FileExist(settings_file) {
     write_settings(settings)
@@ -306,35 +316,47 @@ restart() {
 ; The real logic of the program - hotkeys triggered by mouse events
 #If, settings["mb"][3]
 MButton::
-Send {MButton Down}
-is_down := 1
-while (is_down) {
-    Sleep % slidePressureScale(settings["pr"][3])
-    is_down := GetKeyState("MButton", "P")
+if (A_TickCount - last_m_down >= slidePressureScale(settings["pr"][3]) && A_TickCount - last_m_up >= slidePressureScale(settings["pr"][3])) {
+    Send {MButton Down}
+    last_m_down := A_TickCount
 }
+return
+
+MButton up::
 Send {MButton Up}
+if (A_TickCount - last_m_up >= slidePressureScale(settings["pr"][3])) {
+    last_m_up := A_TickCount
+}
 return
 
 #If, settings["lb"][3]
 LButton::
-Critical
-Send {LButton Down}
-is_down := 1
-while (is_down) {
-    Sleep % slidePressureScale(settings["pr"][3])
-    is_down := GetKeyState("LButton", "P")
+if (A_TickCount - last_l_down >= slidePressureScale(settings["pr"][3]) && A_TickCount - last_l_up >= slidePressureScale(settings["pr"][3])) {
+    Send {LButton Down}
+    last_l_down := A_TickCount
 }
+return
+
+LButton up::
 Send {LButton Up}
+if (A_TickCount - last_l_up >= slidePressureScale(settings["pr"][3])) {
+    last_l_up := A_TickCount
+}
 return
 
 #If, settings["rb"][3]
 RButton::
 Critical
-Send {RButton Down}
-is_down := 1
-while (is_down) {
-    Sleep % slidePressureScale(settings["pr"][3])
-    is_down := GetKeyState("RButton", "P")
+if (A_TickCount - last_r_down >= slidePressureScale(settings["pr"][3]) && A_TickCount - last_r_up >= slidePressureScale(settings["pr"][3])) {
+    Send {RButton Down}
+    last_r_down := A_TickCount
 }
+return
+
+RButton up::
+Critical
 Send {RButton Up}
+if (A_TickCount - last_r_up >= slidePressureScale(settings["pr"][3])) {
+    last_r_up := A_TickCount
+}
 return
