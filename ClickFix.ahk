@@ -346,7 +346,6 @@ return
 
 #If, settings["rb"][3]
 RButton::
-Critical
 if (A_TickCount - last_r_down >= slidePressureScale(settings["pr"][3]) && A_TickCount - last_r_up >= slidePressureScale(settings["pr"][3])) {
     Send {RButton Down}
     last_r_down := A_TickCount
@@ -354,7 +353,6 @@ if (A_TickCount - last_r_down >= slidePressureScale(settings["pr"][3]) && A_Tick
 return
 
 RButton up::
-Critical
 Send {RButton Up}
 if (A_TickCount - last_r_up >= slidePressureScale(settings["pr"][3])) {
     last_r_up := A_TickCount

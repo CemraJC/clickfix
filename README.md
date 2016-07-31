@@ -46,7 +46,7 @@ What started with an idea became ClickFix. With this very simple software, we ho
 
 **ClickFix doesn't claim to tame *all* wild mice.**
 
-One noticeable drawback of ClickFix, is that users which rely on extremely low latency input (gamers, editors, 3D modelers, digital artists) will notice a *slight* lag from when they physically release the button, to when it is 'released' in the software. The severity of this lag depends on the pressure slider. **The general rule is this:**
+One noticeable drawback of ClickFix, is that users which rely on extremely low latency input (gamers, editors, 3D modelers, digital artists) will notice a *slight* lag between clicks. Depending on the pressure slider, repeat clicks will be blocked. This may have a problematic effect on double clicking if the pressure is too high. **The general rule is this:**
 
 <blockquote style="color: #111; font-size:110%;">  More pressure &rarr; better fix :smile: &rarr; more lag :confused: </blockquote>
 
@@ -58,7 +58,7 @@ Sometimes, the mouse buttons extra click happens *just* too late for the fix to 
 Other than those minor issues, **the benefits of ClickFix are undeniably worth the draw backs.**
 <blockquote style="color: #111; font-size:110%;">ClickFix takes an unusable mouse and makes it bearable.</blockquote>
 
-Unfortunately, this software is limited by the test cases we have access to. Since I only have access to one faulty mouse, it's entirely possible that this solution only works for me. **If you're willing to leave feedback, send me a message telling me if it did or did not work.**
+Unfortunately, this software is limited by the test cases we have access to. Since I only have access to one faulty mouse, it's entirely possible that this solution only works for me and the few others I have heard from. **If you're willing to leave feedback, send me a message telling me if it did or did not work.**
 
 ### How it works
 
