@@ -13,11 +13,13 @@ startup_shortcut := A_Startup . "\ClickFix.lnk"
 settings := Object()
 
 ; Initialize Settings in the following way:
-; array[key]   := ["Section", "Key", "Value"]
+; array[key]   := ["Section", "Key", "Value", "OPT: Other variables" ...]
 settings["lb"] := ["Mouse", "left_button", false]
 settings["mb"] := ["Mouse", "middle_button", false]
 settings["rb"] := ["Mouse", "right_button", false]
-settings["pr"] := ["General", "pressure", 25]
+settings["lpr"] := ["General", "left_pressure", 25, "Left click"]
+settings["mpr"] := ["General", "middle_pressure", 25, "Middle click"]
+settings["rpr"] := ["General", "right_pressure", 25, "Right click"]
 settings["sww"] := ["General", "startup_run", false]
 
 ; Initialize Last-click times
@@ -78,16 +80,16 @@ settingsGui() {
 
     ; Leading Paragraph
     Gui, Settings:font, s10 c101013, Arial
-    Gui, Settings:Add, Text, Left W500 yp+22, Choose which mouse button needs fixing - you can select multiple.`nIf you're having issues, adjust the slider until your clicks are fixed!
+    Gui, Settings:Add, Text, Left W500 yp+22, Choose which mouse button needs fixing - you can select multiple.`nIf you're having issues, adjust the corresponding slider until your clicks are fixed!
 
     ; Standard Settings
     Gui, Settings:font, s8 c505050, Trebuchet MS
     Gui, Settings:Add, GroupBox, w235 h220, Standard Settings
     Gui, Settings:font, s10 c10101f, Trebuchet MS
     Gui, Settings:Add, Text, Left w210 xp+12 yp+22, Choose mouse buttons to fix:
-    Gui, Add, Checkbox, yp+25 vcheck_left_button, Fix Left Mouse Button
-    Gui, Add, Checkbox, yp+25 vcheck_middle_button, Fix Middle Mouse Button
-    Gui, Add, Checkbox, yp+25 vcheck_right_button, Fix Right Mouse Button
+    Gui, Add, Checkbox, yp+25 vcheck_left_button gSettingsCheckBoxes, Fix Left Mouse Button
+    Gui, Add, Checkbox, yp+25 vcheck_middle_button gSettingsCheckBoxes, Fix Middle Mouse Button
+    Gui, Add, Checkbox, yp+25 vcheck_right_button gSettingsCheckBoxes, Fix Right Mouse Button
     Gui, Settings:Add, Text, Left w210 yp+35, Other Settings:
     Gui, Add, Checkbox, yp+25 vcheck_start_with_windows, Start on Windows Startup
     Gui, Settings:font, s10 c810000, Arial
@@ -97,27 +99,41 @@ settingsGui() {
     Gui, Settings:font, s8 c505050, Trebuchet MS
     Gui, Settings:Add, GroupBox, xp+245 y106 w235 h190, Advanced
     Gui, Settings:font, s10 c101013, Trebuchet MS
-    Gui, Settings:Add, Text, Left w210 xp+12 yp+22, "Pressure" for the fix:
-    Gui, Add, Slider, yp+20 xp-6 w218 vslide_pressure gSettingsPressureSlider, 20
-    Gui, Settings:font, s8 c101013 w700, Arial
-    Gui, Settings:Add, Link, Left w210 yp+32 xp+6 vslide_readout, Currently 0ms of delay.
-    Gui, Settings:font, s8 c101013 w400, Arial
-    Gui, Settings:Add, Text, Left w210 yp+18, Note that the pressure scale is not linear.
-    Gui, Settings:Add, Text, Left w210 yp+18, Slide this more to the right if ClickFix isn't working properly all the time. Don't forget`nto hit "Apply" between changes.
+    Gui, Settings:Add, Text, Left w210 xp+12 yp+22, "Pressure" for each mouse button:
+    Gui, Settings:font, s7 c101013 w700, Arial
+    Gui, Settings:Add, Link, Left w210 yp+25 vslide_readout_l, Left click has 0ms of delay.
+    Gui, Add, Slider, yp+13 xp-7 w218 vslide_pressure_l gSettingsPressureSlider, 20
+    Gui, Settings:Add, Link, Left w210 yp+32 xp+7 vslide_readout_m, Middle click has 0ms of delay.
+    Gui, Add, Slider, yp+13 xp-7 w218 vslide_pressure_m gSettingsPressureSlider, 20
+    Gui, Settings:Add, Link, Left w210 yp+32 xp+7 vslide_readout_r, Right click has 0ms of delay.
+    Gui, Add, Slider, yp+13 xp-7 w218 vslide_pressure_r gSettingsPressureSlider, 20
 
     ; Buttons
-    Gui, Settings:Add, Button, Default xp-12 Y302 w75, Ok
+    Gui, Settings:font, s8 c101013 w400, Arial
+    Gui, Settings:Add, Button, Default xp-6 Y302 w75, Ok
     Gui, Settings:Add, Button, xp+80 Y302 w75, Apply
     Gui, Settings:Add, Button, xp+80 Y302 w75, Cancel
 
     loadSettingsToGui()
+    settingsCheckBoxes()
     Gui, show, W530 H345 center, ClickFix Settings
 }
 
 ; GUI Actions
+settingsCheckBoxes() {
+    global
+    Gui, Settings:Submit, NoHide
+    GuiControl, Settings:Enable%check_left_button%, slide_pressure_l
+    GuiControl, Settings:Enable%check_middle_button%, slide_pressure_m
+    GuiControl, Settings:Enable%check_right_button%, slide_pressure_r
+    settingsPressureSlider()
+}
 settingsPressureSlider() {
     global
-    GuiControl, Settings:, slide_readout, % slidePressureReadout(slide_pressure)
+    bufferSlidePressure()
+    GuiControl, Settings:, slide_readout_l, % slidePressureReadout(settings["lpr"], check_left_button)
+    GuiControl, Settings:, slide_readout_m, % slidePressureReadout(settings["mpr"], check_middle_button)
+    GuiControl, Settings:, slide_readout_r, % slidePressureReadout(settings["rpr"], check_right_button)
 }
 settingsButtonOk() {
     if (pullSettingsFromGui()) {
@@ -132,28 +148,36 @@ loadSettingsToGui(){
     GuiControl, Settings:, check_left_button, % settings["lb"][3]
     GuiControl, Settings:, check_middle_button, % settings["mb"][3]
     GuiControl, Settings:, check_right_button, % settings["rb"][3]
-    GuiControl, Settings:, slide_pressure, % settings["pr"][3]
-    GuiControl, Settings:, slide_readout, % slidePressureReadout(settings["pr"][3])
+    GuiControl, Settings:, slide_pressure_l, % settings["lpr"][3]
+    GuiControl, Settings:, slide_pressure_m, % settings["mpr"][3]
+    GuiControl, Settings:, slide_pressure_r, % settings["rpr"][3]
+    GuiControl, Settings:, slide_readout_l, % slidePressureReadout(settings["lpr"], settings["lb"][3])
+    GuiControl, Settings:, slide_readout_m, % slidePressureReadout(settings["mpr"], settings["mb"][3])
+    GuiControl, Settings:, slide_readout_r, % slidePressureReadout(settings["rpr"], settings["rb"][3])
     GuiControl, Settings:, check_start_with_windows, % settings["sww"][3]
 }
 pullSettingsFromGui(){
     global
     Gui, Settings:Submit, NoHide
-    if (slidePressureScale(slide_pressure) >= 150) {
-        MsgBox, 0x31, Severe Lag Warning!, Warning! Setting the fix pressure above 150ms can make the mouse frustrating to use and may cause problems with double clicking.
-        IfMsgBox, Cancel
-            return false
-    }
     settings["lb"][3] := check_left_button
     settings["mb"][3] := check_middle_button
     settings["rb"][3] := check_right_button
-    settings["pr"][3] := slide_pressure
+    bufferSlidePressure()
     settings["sww"][3] := check_start_with_windows
     save()
     update_sww_state(settings["sww"][3])
     updateTrayMenuState()
     return true
 }
+
+bufferSlidePressure() {
+    global
+    Gui, Settings:Submit, NoHide
+    settings["lpr"][3] := slide_pressure_l
+    settings["mpr"][3] := slide_pressure_m
+    settings["rpr"][3] := slide_pressure_r
+}
+
 settingsButtonCancel(){
     Gui, Settings:Destroy
 }
@@ -161,12 +185,17 @@ settingsButtonReset() {
     Gui, Settings: +OwnDialogs
     reset()
 }
-slidePressureReadout(unscaled) {
-    suffix := ""
-    if (slidePressureScale(unscaled) >= 150) {
+slidePressureReadout(obj, toggler=1) {
+    suffix := "."
+    if (slidePressureScale(obj[3]) >= 150 && toggler == 1) {
         suffix := "!"
     }
-    return "Currently " . slidePressureScale(unscaled) . "ms of delay" . suffix
+    if (toggler == 0) {
+        value := "no delay (fix disabled)"
+    } else {
+        value := slidePressureScale(obj[3]) . "ms of delay"
+    }
+    return obj[4] . " has " . value . suffix
 }
 slidePressureScale(pressure){
     return Ceil(1.0202**(pressure + 250) - 140)
@@ -316,7 +345,7 @@ restart() {
 ; The real logic of the program - hotkeys triggered by mouse events
 #If, settings["mb"][3]
 MButton::
-if (A_TickCount - last_m_down >= slidePressureScale(settings["pr"][3]) && A_TickCount - last_m_up >= slidePressureScale(settings["pr"][3])) {
+if (A_TickCount - last_m_down >= slidePressureScale(settings["mpr"][3]) && A_TickCount - last_m_up >= slidePressureScale(settings["mpr"][3])) {
     Send {Blind}{MButton Down}
     last_m_down := A_TickCount
 }
@@ -324,14 +353,14 @@ return
 
 MButton up::
 Send {Blind}{MButton Up}
-if (A_TickCount - last_m_up >= slidePressureScale(settings["pr"][3])) {
+if (A_TickCount - last_m_up >= slidePressureScale(settings["mpr"][3])) {
     last_m_up := A_TickCount
 }
 return
 
 #If, settings["lb"][3]
 LButton::
-if (A_TickCount - last_l_down >= slidePressureScale(settings["pr"][3]) && A_TickCount - last_l_up >= slidePressureScale(settings["pr"][3])) {
+if (A_TickCount - last_l_down >= slidePressureScale(settings["lpr"][3]) && A_TickCount - last_l_up >= slidePressureScale(settings["lpr"][3])) {
     Send {Blind}{LButton Down}
     last_l_down := A_TickCount
 }
@@ -339,14 +368,14 @@ return
 
 LButton up::
 Send {Blind}{LButton Up}
-if (A_TickCount - last_l_up >= slidePressureScale(settings["pr"][3])) {
+if (A_TickCount - last_l_up >= slidePressureScale(settings["lpr"][3])) {
     last_l_up := A_TickCount
 }
 return
 
 #If, settings["rb"][3]
 *RButton::
-if (A_TickCount - last_r_down >= slidePressureScale(settings["pr"][3]) && A_TickCount - last_r_up >= slidePressureScale(settings["pr"][3])) {
+if (A_TickCount - last_r_down >= slidePressureScale(settings["rpr"][3]) && A_TickCount - last_r_up >= slidePressureScale(settings["rpr"][3])) {
     Send {Blind}{RButton Down}
     last_r_down := A_TickCount
 }
@@ -354,7 +383,7 @@ return
 
 *RButton up::
 Send {Blind}{RButton Up}
-if (A_TickCount - last_r_up >= slidePressureScale(settings["pr"][3])) {
+if (A_TickCount - last_r_up >= slidePressureScale(settings["rpr"][3])) {
     last_r_up := A_TickCount
 }
 return
