@@ -1,5 +1,6 @@
 var clicker = document.querySelector(".click-target");
 var click_log = document.querySelector(".click-info");
+var clear_btn = document.querySelector(".click-info-clear")
 
 
 function logClickEvent(msg, button) {
@@ -30,6 +31,13 @@ function buttonDecode(number) {
             return false;
     }
 }
+
+function clearLog() {
+    click_log.innerHTML = "";
+}
+
+clear_btn.addEventListener('click', clearLog);
+
 
 clicker.addEventListener('mousedown', function(e){
     e.preventDefault();
