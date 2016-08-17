@@ -360,6 +360,7 @@ return
 
 #If, settings["lb"][3]
 LButton::
+Critical
 if (A_TickCount - last_l_down >= slidePressureScale(settings["lpr"][3]) && A_TickCount - last_l_up >= slidePressureScale(settings["lpr"][3])) {
     Send {Blind}{LButton Down}
     last_l_down := A_TickCount
