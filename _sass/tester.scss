@@ -1,0 +1,43 @@
+.tester-box {
+    display: flex;
+    flex-direction: row;
+    margin: 2rem auto;
+
+    & .click-target {
+
+        $main-color: #78B5F4;
+
+        padding: 6rem 4rem;
+        margin: 0 1rem;
+
+        text-align: center;
+        font-weight: bold;
+
+        cursor: pointer;
+        background: lighten($main-color, 5%);
+        border: 1px solid darken($main-color, 20%);
+        border-radius: 0.3rem;
+
+        transition: background 100ms;
+
+        &:hover {
+            background: $main-color;
+        }
+
+        &:active {
+            background: darken($main-color, 10%);
+        }
+    }
+
+    & .click-log {
+        flex: 1;
+        border-left: 2px solid #222;
+        padding: 0 1rem;
+
+        & .click-info {
+            font-size: 80%;
+            max-height: 12rem;
+            overflow-y: auto;
+        }
+    }
+}
