@@ -34,6 +34,14 @@
         font-size: 80%;
     }
 
+    .tester-box {
+        flex-direction: column;
+        & .click-target {
+            padding: 1rem 0;
+            margin: 1rem 0;
+        }
+    }
+
     a.download-button {
         display: block;
         text-align: center;
