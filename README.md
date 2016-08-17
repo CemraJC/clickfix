@@ -11,7 +11,7 @@
 To get going with ClickFix, simply download the [latest executable](https://github.com/cemrajc/clickfix/releases/latest), **put it in its own folder** and run it. Because ClickFix is completely portable, it runs without installation - you could even run it off a thumb-drive. Keep in mind that it will create a settings file in the folder you put it in.
 
 **2: First Run**<br>
-When started for the first time, the "About" window pops up. Behind this window is the settings panel (this can be accessed later from the tray menu). To get ClickFix up and running, select the mouse button that needs fixing. To see if the fix worked, try highlighting a large block of text and see if you get interrupted at any point. Normally the default `pressure` setting works well, but if the fix only works sometimes or *doesn't work at all*, try increasing the `pressure` slider. Don't forget to hit apply after to make changes :wink:
+When started for the first time, the "About" window pops up. Behind this window is the settings panel (this can be accessed later from the tray menu). To get ClickFix up and running, select the mouse button that needs fixing. To see if the fix worked, try highlighting a large block of text and see if you get interrupted at any point. Normally the default `pressure` setting works well, but if the fix only works sometimes or *doesn't work at all*, try increasing the `pressure` slider. Don't forget to hit apply after to make changes :wink: I reccommend using the 'click tester' on the [homepage](https://clickfix.cf) to fine-tune the pressure setting.
 
 I reccommend you also enable `Start on Windows Startup` (for convenience).<br>
 When you're satisfied that everything works as it should, hit Ok and ClickFix will never bother you again.
@@ -46,7 +46,7 @@ What started with an idea became ClickFix. With this very simple software, we ho
 
 **ClickFix doesn't claim to tame *all* wild mice.**
 
-One noticeable drawback of ClickFix, is that users which rely on extremely low latency input (gamers, editors, 3D modelers, digital artists) will notice a *slight* lag between clicks. Depending on the pressure slider, repeat clicks will be blocked. This may have a problematic effect on double clicking if the pressure is too high. **The general rule is this:**
+One noticeable drawback of ClickFix, is that users which rely on extremely low latency input (gamers, editors, 3D modelers, digital artists) will notice a *slight* lag between clicks. Depending on the pressure slider, repeat clicks will be blocked. This may have a problematic effect on double clicking if the pressure is too high. As mentioned before, I reccommend using the 'click tester' on the [homepage](https://clickfix.cf) to fine-tune the pressure. **The general rule is this:**
 
 <blockquote style="color: #111; font-size:110%;">  More pressure &rarr; better fix :smile: &rarr; more lag :confused: </blockquote>
 
