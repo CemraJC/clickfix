@@ -368,8 +368,8 @@ if (A_TickCount - last_l_down >= slidePressureScale(settings["lpr"][3]) && A_Tic
 return
 
 LButton up::
-Send {Blind}{LButton Up}
 if (A_TickCount - last_l_up >= slidePressureScale(settings["lpr"][3])) {
+    Send {Blind}{LButton Up}
     last_l_up := A_TickCount
 }
 return
