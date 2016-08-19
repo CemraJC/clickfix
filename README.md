@@ -8,7 +8,7 @@
 ### [Getting started](https://github.com/cemrajc/clickfix/releases/latest) <span style="font-size:60%">*&larr; TL;DR, click here.*</span>
 
 **1: Download**<br>
-To get going with ClickFix, simply download the [latest executable](https://github.com/cemrajc/clickfix/releases/latest), **put it in its own folder** and run it. Because ClickFix is completely portable, it runs without installation - you could even run it off a thumb-drive. Keep in mind that it will create a settings file in the folder you put it in.
+To get going, simply download the [latest executable](https://github.com/cemrajc/clickfix/releases/latest), **put it in its own folder** and run it. Because ClickFix is completely portable, it runs without installation - you could even run it off a thumb-drive. Keep in mind that it will create a settings file in the folder you put it in.
 
 **2: First Run**<br>
 When started for the first time, the "About" window pops up. Behind this window is the settings panel (this can be accessed later from the tray menu). To get ClickFix up and running, select the mouse button that needs fixing. To see if the fix worked, try highlighting a large block of text and see if you get interrupted at any point. Normally the default `pressure` setting works well, but if the fix only works sometimes or *doesn't work at all*, try increasing the `pressure` slider. Don't forget to hit apply after to make changes :wink: I reccommend using the 'click tester' on the [homepage](https://clickfix.cf) to fine-tune the pressure setting.
@@ -24,6 +24,15 @@ If you have a **feature request** or you **come across any bugs**, please start 
 **Tip:** You can double click the tray icon to access the full settings window.
 
 > Very special thanks to the [AutoHotKey crew](https://autohotkey.com/) - their scripting language made this super easy.
+
+**Update**<br>
+
+1. Download the [latest ClickFix](https://github.com/cemrajc/clickfix/releases/latest)
+1. Locate the ClickFix.exe file on your file system
+1. Make sure ClickFix *isn't* running
+1. Delete the old one
+1. Put the latest in
+
 
 **Uninstall**<br>
 To remove all traces of ClickFix from your system, simply click "Reset" in the tray menu or the settings window and delete the folder you put it in.
