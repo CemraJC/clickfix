@@ -46,16 +46,6 @@
             padding: $pad;
             font-family: Open Sans, Arial, sans-serif;
 
-            & h1.headline {
-                font-size: 300%;
-                & span {
-                    font-family: $serif;
-                    font-size: 50%;
-                    font-style: italic;
-                    color: #636363;
-                }
-            }
-
             & .bar-section {
                 display: block;
                 margin: $pad*2 0;
