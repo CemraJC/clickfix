@@ -31,10 +31,9 @@ header.splashground {
             line-height: 80%;
             font-family: Vladimir Script, $serif;
         }
-        & p {
+        & .tagline {
             opacity: 0.9;
-            text-indent: 6em;
-            font-family: $serif;
+            font-family: $title-font;
             font-style: italic;
         }
     }
