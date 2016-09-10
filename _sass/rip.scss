@@ -1,50 +1,58 @@
 
 /*
-    This code was ripped from the "Twilight" Github theme - just so you know
-    I modified it a bit
+This code was ripped from the "Twilight" Github theme - just so you know
+I modified it a bit
  */
 
 a.download-button {
-  display: inline-block;
-  filter:alpha(opacity=80);  /* IE 5-7 */
-  text-indent: 0!important;
+    display: inline-block;
+    filter:alpha(opacity=80);  /* IE 5-7 */
+    font-family: $title-font;
+    text-indent: 0!important;
 
-  width: auto;
-  height: auto;
+    padding: 0rem 0.4rem;
+    width: auto;
+    height: auto;
 
-  background: #999; /* for non-css3 browsers */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#111B47', endColorstr='#000A0E'); /* IE <= 9 */
-  background: -webkit-gradient(linear, left top, left bottom, from(#111B47), to(#000A0E)); /* ancient webkit browsers */
-  background: -webkit-linear-gradient(top,  #111B47,  #000A0E);  /* Safari <=6.1, Android <= 4.3 */
-  background: linear-gradient(to bottom,  #111B47,  #000A0E);
-  border: 1px solid black;
-  border-radius: 3px;
-  float: right;
-  opacity: 0.8;
+    background: #999; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#111B47', endColorstr='#000A0E'); /* IE <= 9 */
+    background: -webkit-gradient(linear, left top, left bottom, from(#111B47), to(#000A0E)); /* ancient webkit browsers */
+    background: -webkit-linear-gradient(top,  #111B47,  #000A0E);  /* Safari <=6.1, Android <= 4.3 */
+    background: linear-gradient(to bottom,  #111B47,  #000A0E);
+    border: 1px solid black;
+    border-radius: 3px;
+    float: right;
+    opacity: 0.95;
 
-  margin-left: 10px;
+    margin-left: 10px;
 
-  transition: opacity ease-in-out 0.1s;
-  -webkit-transition: opacity ease-in-out 0.3s;  /* Safari <=6.1, Android <= 4.3 */
+    transition: opacity ease-in-out 0.1s;
+    -webkit-transition: opacity ease-in-out 0.3s;  /* Safari <=6.1, Android <= 4.3 */
 
-  &:hover {
-    opacity: 1;
-    filter:alpha(opacity=100);
-  }
+    &:active {
+        border-color: #77a;
+        color: #aaa;
+    }
+
+    &:hover {
+        opacity: 1;
+        filter:alpha(opacity=100);
+    }
 }
 
 a.download-button span {
-  width: auto;
-  height: auto;
-  padding: 5px 5px;
-  display: inline-block;
-  text-indent: 0 !important;
-  color: #fff;
+    width: auto;
+    height: auto;
+    padding: 5px 5px;
+    display: inline-block;
+    text-indent: 0 !important;
+    color: #fafafa;
 }
 
 a.download-button img {
-  display: inline;
-  padding: 5px 0 5px 5px;
-  vertical-align: middle
+    display: inline;
+    width: 1.5rem;
+    padding: 5px 0 11px 5px;
+    vertical-align: middle;
 }
 

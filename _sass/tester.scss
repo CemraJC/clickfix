@@ -8,16 +8,19 @@
         $main-color: #78B5F4;
 
         padding: 6rem 4rem;
-        margin: 0 1rem;
+        margin: 0 1rem 0 0;
 
         text-align: center;
         font-weight: bold;
+        font-family: $title-font;
+        color: #fafafa;
 
         cursor: pointer;
         background: lighten($main-color, 5%);
         border: 1px solid darken($main-color, 20%);
         border-radius: 0.3rem;
 
+        opacity: 0.8;
         transition: background 100ms;
 
         &:hover {

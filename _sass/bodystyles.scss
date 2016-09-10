@@ -8,6 +8,7 @@
             background-image: url(../images/pattern.png);
             box-shadow: 0 0.1em 0.2em #000;
             border-bottom: 1px solid #000;
+            font-family: $title-font;
 
             & .inner {
                 max-width: 62.5rem;
@@ -45,37 +46,45 @@
             margin: 0 auto;
             padding: $pad;
             font-family: $sans-serif;
-						
-						h1, h2, h3 {
-							font-family: $title-font;
-							font-weight: thin;
-						}
 
-            & .bar-section {
-                display: block;
-                margin: $pad*2 0;
-                & img.demo {
-                    display: block;
-                    width: 100%;
-                    max-width: 36rem;
-                    margin: 0 auto;
-                    box-shadow: 0.2em 0.4em 1em #555;
+            h1, h2, h3 {
+                font-family: $title-font;
+                font-weight: thin;
+            }
+
+            & .focus-block {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                margin-bottom: 3rem;
+
+                .image, .text {
+                    flex: 1;
                 }
-                & img.display {
-                    display: inline-block;
-                    width: 30%;
-                    max-width: 13em;
-                    &.right { float: right; }
-                    &.left { float: left; }
-                }
-                & div.text {
-                    vertical-align: middle;
-                    display: inline-block;
-                    width: 70%;
-                    &.stretch {
-                        margin-bottom: 2rem;
+                .image {
+                    margin: auto 0;
+                    & img {
                         width: 100%;
                     }
+                }
+                .text {
+                    margin: auto 2rem;
+                }
+            }
+
+            & .prose-block {
+                margin: 0 auto;
+                margin-bottom: 2rem;
+                width: 75%;
+
+                & p {
+                    margin-bottom: 1.2rem;
+                }
+                & img.demo {
+                    width: 100%;
+                    max-width: 42rem;
+                    margin: 0 auto;
+                    box-shadow: 0.2em 0.4em 1em #555;
                 }
             }
         }

@@ -1,4 +1,4 @@
-@media screen and (max-width: 28rem) {
+@media screen and (max-width: 30rem) {
     header.splashground {
         position: relative;
         .title {
@@ -12,21 +12,14 @@
         & h1.headline {
             font-size: 150%;
         }
-        & .bar-section {
-            margin: 0.5rem 0;
-            & div.text {
-                display: block !important;
-                margin: 0 auto;
-                width: 100%;
-                text-align: justify;
+        & .focus-block {
+            flex-direction: column;
+            & .text {
+                margin: 1rem 0;
             }
-            & img.display {
-                display: block !important;
-                margin: 0 auto !important;
-                min-width: 5.5rem;
-                &.right { float: none !important; }
-                &.left  { float: none !important; }
-            }
+        }
+        & .prose-block {
+            width: 100%;
         }
     }
 

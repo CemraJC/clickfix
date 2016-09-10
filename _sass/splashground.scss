@@ -29,7 +29,8 @@ header.splashground {
         & h1 {
             font-size: 580%;
             line-height: 80%;
-            font-family: Vladimir Script, $serif;
+            font-family: Vladimir Script, Lato, $serif;
+            font-weight: 200;
         }
         & .tagline {
             opacity: 0.9;
