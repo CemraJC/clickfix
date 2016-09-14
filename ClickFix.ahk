@@ -352,8 +352,8 @@ if (A_TickCount - last_m_down >= slidePressureScale(settings["mpr"][3]) && A_Tic
 return
 
 MButton up::
-Send {Blind}{MButton Up}
 if (A_TickCount - last_m_up >= slidePressureScale(settings["mpr"][3])) {
+    Send {Blind}{MButton Up}
     last_m_up := A_TickCount
 }
 return
@@ -383,8 +383,8 @@ if (A_TickCount - last_r_down >= slidePressureScale(settings["rpr"][3]) && A_Tic
 return
 
 *RButton up::
-Send {Blind}{RButton Up}
 if (A_TickCount - last_r_up >= slidePressureScale(settings["rpr"][3])) {
+    Send {Blind}{RButton Up}
     last_r_up := A_TickCount
 }
 return
