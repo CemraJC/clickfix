@@ -39,10 +39,10 @@
       <div class="main" role="main">
         <div class="download-bar">
           <div class="inner">
-            <a href="https://github.com/CemraJC/clickfix/tarball/master" class="download-button"><img src="images/tar.png"><span hs>Source</span></a>
-            <a href="https://github.com/CemraJC/clickfix/zipball/master" class="download-button"><img src="images/zip.png"><span hs>Source</span></a>
-            <a href="https://github.com/CemraJC/clickfix/releases/latest" class="download-button"><img src="images/download.png"><span hs>Download</span></a>
-            <a href="https://github.com/CemraJC/clickfix" class="github-reference">
+            <a href="https://github.com/CemraJC/clickfix/tarball/master" class="download-button" id="tarball-download"><img src="images/tar.png"><span hs>Source</span></a>
+            <a href="https://github.com/CemraJC/clickfix/zipball/master" class="download-button" id="zipball-download"><img src="images/zip.png"><span hs>Source</span></a>
+            <a href="https://github.com/CemraJC/clickfix/releases/latest" class="download-button" id="download-bar-link"><img src="images/download.png"><span hs>Download</span></a>
+            <a href="https://github.com/CemraJC/clickfix" class="github-reference" id="github-bar-link">
               <img alt="Github Logo" src="images/github.png">
               <span hs>View ClickFix on GitHub</span>
             </a>
@@ -57,7 +57,7 @@
             <div class="text">
               <h2>Get Started - Download ClickFix</h2>
               <p>To get started as quickly as possible, click the download button below. Then, put the downloaded file in its own folder and run it. The rest explains  itself!</p>
-              <a href="https://github.com/CemraJC/clickfix/releases/latest" class="download-button" style="float: none; margin-top: 2em; margin-left: 0;"><img src="images/download.png"><span>Direct Download</span></a>
+              <a id="download-page-link" href="https://github.com/CemraJC/clickfix/releases/latest" class="download-button" style="float: none; margin-top: 2em; margin-left: 0;"><img src="images/download.png"><span>Direct Download</span></a>
             </div>
           </div>
 
@@ -66,7 +66,7 @@
             <div class="text" >
               <h2>More Info</h2>
               <p>
-              ClickFix is, to my knowledge, the only working software solution for click-happy mice. If your mouse occasionally fires off unwanted extra clicks, then ClickFix may be able to help. It is trivial to set up ClickFix - many users set-and-forget in <a href="#sorry - not made yet :P">just under 1 minute</a>. For more information about the inner workings of ClickFix, have a look at the <a href="https://github.com/CemraJC/clickfix">GitHub repository</a>.
+              ClickFix is, to my knowledge, the only working software solution for click-happy mice. If your mouse occasionally fires off unwanted extra clicks, then ClickFix may be able to help. It is trivial to set up ClickFix - many users set-and-forget in <a href="#sorry - not made yet :P">just under 1 minute</a>. For more information about the inner workings of ClickFix, have a look at the <a id="github-page-link" href="https://github.com/CemraJC/clickfix">GitHub repository</a>.
               </p>
               <p>If you're still not sure that ClickFix is worthwhile, consider this. When your mouse succumbs to multi-click disease, it can be tedious and risky to try and fix it by hand.</p><p> If your mouse is still within its warantee period, you should definitely get it replaced, but in the mean time, you will have to make do with another mouse. Some people buy relatively cheap mice, and will use ClickFix until a replacement mouse arrives in the post. But there are also many people who use <i>quality</i> mice that are costly to replace.</p>
               <p>For people in this situation, ClickFix can save you a significant amount of money.</p>
@@ -96,11 +96,11 @@
     <footer>
       <div class="inner">
         <div class="owner">
-          <p><b>Copyright &copy; 2016 Jason Cemra.</b> <br> <a href="https://github.com/CemraJC">CemraJC</a> maintains <a href="https://github.com/CemraJC/clickfix">ClickFix</a> and this site. <i>Last build: {{ site.time | date_to_string }}</i></p>
+          <p><b>Copyright &copy; 2016 Jason Cemra.</b> <br> <a id="profile-footer-link" href="https://github.com/CemraJC">CemraJC</a> maintains <a id="github-footer-link" href="https://github.com/CemraJC/clickfix">ClickFix</a> and this site. <i>Last build: {{ site.time | date_to_string }}</i></p>
         </div>
 
         <div class="creds">
-          This page generously hosted by <a href="https://pages.github.com/">GitHub</a>
+          This page generously hosted by <a id="github-pages-link" href="https://pages.github.com/">GitHub</a>
         </div>
       </div>
     </footer>
