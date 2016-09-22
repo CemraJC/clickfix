@@ -35,7 +35,7 @@ If you have a **feature request** or you **come across any bugs**, please start 
 
 
 **Uninstall**<br>
-To remove all traces of ClickFix from your system, simply click "Reset" in the tray menu or the settings window and delete the folder you put it in.
+To remove all traces of ClickFix from your computer, simply click "Reset" in the tray menu or the settings window and delete the folder you put it in.
 
 **Obligatory garbage**<br>
 Copyright &copy; 2016 Jason Cemra - released under the [GPLv3](http://www.gnu.org/licenses/)
