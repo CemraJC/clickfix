@@ -3,7 +3,9 @@ header.splashground {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 20% 0;
+    padding: 1rem 0;
+    height: 80%;
+    max-height: 40rem;
 
     position: relative;
     background: #15161A;

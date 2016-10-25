@@ -3,20 +3,35 @@
 
     & .main {
 
-        & .download-bar {
-            background: #111;
-            background-image: url(../images/pattern.png);
-            box-shadow: 0 0.1em 0.2em #000;
-            border-bottom: 1px solid #000;
+        & .callout-block {
             font-family: $title-font;
+            padding: 1rem 0 6rem 0;
+            text-align: center;
+            line-height: 2.7;
 
-            & .inner {
-                max-width: 62.5rem;
-                margin: 0 auto;
-                padding: $pad;
-                text-align: left;
+            span.big-arrow {
+                font-size: 500%;
+                color: #B7B7B7;
+                vertical-align: -0.8rem;
+                padding: 0 1rem;
+                line-height: 0;
+                pointer-events: none;
             }
+
+            .callout-link {
+                font-size: 160%;
+                font-weight: lighter;
+                text-decoration: none;
+                color: #F0F7FF;
+                background: #145CA5;
+                padding: 0.5em 3em;
+                border-radius: 5em;
+                border: 1px solid #6370C7;
+                box-shadow: 0 0.2rem 0.2em #C3C3C3;
+            }
+
             & a.github-reference {
+                font-size: 80%;
                 padding: 1em;
                 border-radius: 5em;
                 white-space: nowrap;
@@ -42,14 +57,13 @@
 
 
         & article.body {
-            max-width: 1000px;
+            max-width: 80rem;
             margin: 0 auto;
             padding: $pad;
             font-family: $sans-serif;
 
             h1, h2, h3 {
                 font-family: $title-font;
-                font-weight: thin;
             }
 
             & .focus-block {
@@ -81,9 +95,10 @@
                     margin-bottom: 1.2rem;
                 }
                 & img.demo {
+                    display: block;
                     width: 100%;
                     max-width: 42rem;
-                    margin: 0 auto;
+                    margin: 3rem auto;
                     box-shadow: 0.2em 0.4em 1em #555;
                 }
             }
