@@ -7,4 +7,4 @@ For now, you can visit the project page at [clickfix.cf](http://www.clickfix.cf)
 
 *Copyright 2016 Jason Cemra*
 
-## [Download Clickfix](https:/cemrajc.github.io/clickfix/releases)
+## [Download Clickfix](https://github.com/cemrajc/clickfix/releases)
