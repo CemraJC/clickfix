@@ -18,13 +18,14 @@
                 pointer-events: none;
             }
 
-            .callout-link {
+            #callout-link {
+                display: inline-block;
                 font-size: 160%;
                 font-weight: lighter;
                 text-decoration: none;
                 color: #F0F7FF;
                 background: #145CA5;
-                padding: 0.5em 3em;
+                padding: 0.2em 2em;
                 border-radius: 5em;
                 border: 1px solid #6370C7;
                 box-shadow: 0 0.2rem 0.2em #C3C3C3;
