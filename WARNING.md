@@ -9,7 +9,7 @@ the ClickFix.exe program through a secure connection to the [main site][main] or
 from the [Github releases page][releases] then its integrity is ensured.
 
 The full source of ClickFix is uploaded to *this* Github repository. If you
-would like to verify that the code behind the program is not dangerous, read
+would like to verify that the code behind the program is not malicious, read
 through [the main script][script] or compile it yourself with [AutoHotKey][ahk].
 
 If you are having trouble with ClickFix being blocked by antivirus software, add
