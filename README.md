@@ -1,6 +1,6 @@
 # ClickFix
 ###Tame your mouse - stop annoying repeat clicks
-> ***Windows Only*** - *Should work on any version - tested on Windows 7*
+> ***Windows Only*** - *Should work on any version - tested on Windows 7, 8 and 10*
 
 > If this fixes your mouse (or doesn't) [let me know about it!](mailto:cemrajc+clickfix@gmail.com) :smile:
 
@@ -19,7 +19,7 @@ When you're satisfied that everything works as it should, hit Ok and ClickFix wi
 **3: Forever After That**<br>
 ClickFix will run in the background, keeping a leash on your mouse.
 If you ever want to quickly change some settings, right click on the tray icon and under 'Quick Options' you have access to some of the standard settings.<br>
-If you have a **feature request** or you **come across any bugs**, please start an [issue tracker](https://github.com/cemrajc/clickfix/issues) and I'll try to accommodate you as soon as possible.
+If you **come across any bugs**, please start an [issue tracker](https://github.com/cemrajc/clickfix/issues) and I'll try to accommodate you as soon as possible.
 
 **Tip:** You can double click the tray icon to access the full settings window.
 
@@ -30,15 +30,15 @@ If you have a **feature request** or you **come across any bugs**, please start 
 1. Download the [latest ClickFix](https://github.com/cemrajc/clickfix/releases/latest)
 1. Locate the ClickFix.exe file on your file system
 1. Make sure ClickFix *isn't* running
-1. Delete the old one
-1. Put the latest in
+1. Delete the contents of the directory
+1. Put the latest stuff in
 
 
 **Uninstall**<br>
 To remove all traces of ClickFix from your computer, simply click "Reset" in the tray menu or the settings window and delete the folder you put it in.
 
 **Obligatory garbage**<br>
-Copyright &copy; 2016 Jason Cemra - released under the [GPLv3](http://www.gnu.org/licenses/)
+Copyright &copy; 2017 Jason Cemra - released under the [GPLv3](http://www.gnu.org/licenses/)
 
 
 # Learn more here:
