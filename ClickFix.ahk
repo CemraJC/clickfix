@@ -7,7 +7,7 @@ SetWorkingDir %A_ScriptDir%
 
 ; --- Actual program ---
 
-ver := "2.4.1"
+ver := "2.5.1"
 settings_file = ClickFix_Settings.ini
 startup_shortcut := A_Startup . "\ClickFix.lnk"
 settings := Object()
@@ -21,6 +21,7 @@ settings["lpr"] := ["General", "left_pressure", 25, "Left click"]
 settings["mpr"] := ["General", "middle_pressure", 25, "Middle click"]
 settings["rpr"] := ["General", "right_pressure", 25, "Right click"]
 settings["sww"] := ["General", "startup_run", false]
+settings["dis"] := ["General", "disabled", false]
 
 ; Initialize Last-click times
 last_m_down := 0
@@ -64,6 +65,9 @@ Menu, Tray, Add, Reset, reset
 Menu, Tray, Add, Exit, exit
 Menu, Tray, Tip, ClickFix - Tame your mouse
 
+; Set the App Icon
+setTrayIcon()
+
 ; Define the settings GUI
 settingsGui() {
     global
@@ -76,7 +80,7 @@ settingsGui() {
     Gui, Settings:font, s18, Arial
     Gui, Settings:Add, Text, Center W500, ClickFix Settings
     Gui, Settings:font, s8 c808080, Trebuchet MS
-    Gui, Settings:Add, Text, Center W500 yp+26, Copyright (c) 2016 Jason Cemra
+    Gui, Settings:Add, Text, Center W500 yp+26, Copyright (c) 2017 Jason Cemra
 
     ; Leading Paragraph
     Gui, Settings:font, s10 c101013, Arial
@@ -117,6 +121,11 @@ settingsGui() {
     loadSettingsToGui()
     settingsCheckBoxes()
     Gui, show, W530 H345 center, ClickFix Settings
+
+    ; Show a warning if the program is disabled
+    If (settings["dis"][3]) {
+        MsgBox, 0x30, Warning, ClickFix Disabled. Press Ctrl + Shift + ~ to toggle this.
+    }
 }
 
 ; GUI Actions
@@ -228,11 +237,24 @@ updateTrayMenuState(){
         Menu, options, UnCheck, Start With Windows
     }
 }
+setTrayIcon(){
+    global 
+    If (settings["dis"][3]) {
+        Menu, Tray, Icon, ./icon/ClickFix-icon-disabled.ico
+    } else {
+        Menu, Tray, Icon, ./icon/ClickFix-icon.ico
+    }
+}
 
 updateTrayMenuState()
 Sleep, 500  ; There seems to be an issue with the startup shortcut disappearing
 update_sww_state(settings["sww"][3])
 
+; Use a hotkey to enable/disable the software functionality
+^+`::
+settings["dis"][3] := !settings["dis"][3]
+setTrayIcon()
+save()
 return
 
 
@@ -332,7 +354,7 @@ startup_shortcut_destroy() {
 about() {
     global ver
     Gui, Settings:+OwnDialogs
-    MsgBox, 0x40, Welcome to ClickFix!, % "Thank you for using ClickFix!`n`nClickFix is always available from the taskbar tray area (if it's running). Whether ClickFix works for you or it doesn't, send me a message! I'm always looking for ways to improve the software: cemrajc+clickfix@gmail.com.`n`nThis software is at version " . ver . ".`nCopyright 2016 Jason Cemra - released under the GPLv3.`nSpecial thanks to the AutoHotKey crew, for making this program easy to write."
+    MsgBox, 0x40, Welcome to ClickFix!, % "Thank you for using ClickFix!`n`nClickFix is always available from the taskbar tray area (if it's running). Remember, ClickFix makes an unusable mouse into a bearable one until a replacement can be made. You may experience issues with the mouse not clicking at times - simply right click on the tray icon to restart the program.`n`nThis software is at version " . ver . ".`nCopyright 2017 Jason Cemra - released under the GPLv3.`nSpecial thanks to the AutoHotKey crew, for making this program easy to write."
 }
 
 restart() {
@@ -343,7 +365,7 @@ restart() {
 
 
 ; The real logic of the program - hotkeys triggered by mouse events
-#If, settings["mb"][3]
+#If, settings["mb"][3] and !settings["dis"][3]
 MButton::
 if (A_TickCount - last_m_down >= slidePressureScale(settings["mpr"][3]) && A_TickCount - last_m_up >= slidePressureScale(settings["mpr"][3])) {
     Send {Blind}{MButton Down}
@@ -358,7 +380,7 @@ if (A_TickCount - last_m_up >= slidePressureScale(settings["mpr"][3])) {
 }
 return
 
-#If, settings["lb"][3]
+#If, settings["lb"][3] and !settings["dis"][3]
 LButton::
 Critical
 if (A_TickCount - last_l_down >= slidePressureScale(settings["lpr"][3]) && A_TickCount - last_l_up >= slidePressureScale(settings["lpr"][3])) {
@@ -374,7 +396,7 @@ if (A_TickCount - last_l_up >= slidePressureScale(settings["lpr"][3])) {
 }
 return
 
-#If, settings["rb"][3]
+#If, settings["rb"][3] and !settings["dis"][3]
 *RButton::
 if (A_TickCount - last_r_down >= slidePressureScale(settings["rpr"][3]) && A_TickCount - last_r_up >= slidePressureScale(settings["rpr"][3])) {
     Send {Blind}{RButton Down}
