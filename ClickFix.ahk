@@ -420,3 +420,33 @@ if (A_TickCount - last_r_up >= slidePressureScale(settings["rpr"][3])) {
     last_r_up := A_TickCount
 }
 return
+
+#If, settings["fb"][3] and !settings["dis"][3]
+*XButton2::
+if (A_TickCount - last_f_down >= slidePressureScale(settings["fpr"][3]) && A_TickCount - last_f_up >= slidePressureScale(settings["fpr"][3])) {
+    Send {Blind}{XButton2 Down}
+    last_f_down := A_TickCount
+}
+return
+
+*XButton2 up::
+if (A_TickCount - last_f_up >= slidePressureScale(settings["fpr"][3])) {
+    Send {Blind}{XButton2 Up}
+    last_f_up := A_TickCount
+}
+return
+
+#If, settings["bb"][3] and !settings["dis"][3]
+*XButton1::
+if (A_TickCount - last_b_down >= slidePressureScale(settings["bpr"][3]) && A_TickCount - last_b_up >= slidePressureScale(settings["bpr"][3])) {
+    Send {Blind}{XButton1 Down}
+    last_b_down := A_TickCount
+}
+return
+
+*XButton1 up::
+if (A_TickCount - last_b_up >= slidePressureScale(settings["bpr"][3])) {
+    Send {Blind}{XButton1 Up}
+    last_b_up := A_TickCount
+}
+return
