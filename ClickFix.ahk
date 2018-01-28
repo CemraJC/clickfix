@@ -61,6 +61,8 @@ Menu, Tray, Add, About, about
 Menu, options, Add, Fix Left Button, flb
 Menu, options, Add, Fix Middle Button, fmb
 Menu, options, Add, Fix Right Button, frb
+Menu, options, Add, Fix Forward Button, ffb
+Menu, options, Add, Fix Back Button, fbb
 Menu, options, Add
 Menu, options, Add, Start with Windows, sww
 Menu, Tray, Add, Quick Options, :options
@@ -261,6 +263,18 @@ updateTrayMenuState(){
         Menu, options, UnCheck, Fix Right Button
     }
 
+    if (settings["fb"][3] == true) {
+        Menu, options, Check, Fix Forward Button
+    } else {
+        Menu, options, UnCheck, Fix Forward Button
+    }
+
+    if (settings["bb"][3] == true) {
+        Menu, options, Check, Fix Back Button
+    } else {
+        Menu, options, UnCheck, Fix Back Button
+    }
+
     if (settings["sww"][3] == true) {
         Menu, options, Check, Start With Windows
     } else {
@@ -307,6 +321,20 @@ return
 frb:
 Menu, options, ToggleCheck, Fix Right Button
 settings["rb"][3] := !settings["rb"][3]
+save()
+loadSettingsToGui()
+return
+
+ffb:
+Menu, options, ToggleCheck, Fix Forward Button
+settings["fb"][3] := !settings["fb"][3]
+save()
+loadSettingsToGui()
+return
+
+fbb:
+Menu, options, ToggleCheck, Fix Back Button
+settings["bb"][3] := !settings["bb"][3]
 save()
 loadSettingsToGui()
 return
