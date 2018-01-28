@@ -22,6 +22,8 @@ settings["bb"] := ["Mouse", "back_button", false]
 settings["lpr"] := ["General", "left_pressure", 25, "Left click"]
 settings["mpr"] := ["General", "middle_pressure", 25, "Middle click"]
 settings["rpr"] := ["General", "right_pressure", 25, "Right click"]
+settings["bpr"] := ["General", "forward_pressure", 25, "Forward click"]
+settings["fpr"] := ["General", "back_pressure", 25, "Back click"]
 settings["sww"] := ["General", "startup_run", false]
 settings["dis"] := ["General", "disabled", false]
 
