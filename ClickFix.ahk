@@ -151,6 +151,8 @@ settingsCheckBoxes() {
     GuiControl, Settings:Enable%check_left_button%, slide_pressure_l
     GuiControl, Settings:Enable%check_middle_button%, slide_pressure_m
     GuiControl, Settings:Enable%check_right_button%, slide_pressure_r
+    GuiControl, Settings:Enable%check_forward_button%, slide_pressure_f
+    GuiControl, Settings:Enable%check_back_button%, slide_pressure_b
     settingsPressureSlider()
 }
 settingsPressureSlider() {
@@ -159,6 +161,8 @@ settingsPressureSlider() {
     GuiControl, Settings:, slide_readout_l, % slidePressureReadout(settings["lpr"], check_left_button)
     GuiControl, Settings:, slide_readout_m, % slidePressureReadout(settings["mpr"], check_middle_button)
     GuiControl, Settings:, slide_readout_r, % slidePressureReadout(settings["rpr"], check_right_button)
+    GuiControl, Settings:, slide_readout_f, % slidePressureReadout(settings["fpr"], check_forward_button)
+    GuiControl, Settings:, slide_readout_b, % slidePressureReadout(settings["bpr"], check_back_button)
 }
 settingsButtonOk() {
     if (pullSettingsFromGui()) {
@@ -173,12 +177,18 @@ loadSettingsToGui(){
     GuiControl, Settings:, check_left_button, % settings["lb"][3]
     GuiControl, Settings:, check_middle_button, % settings["mb"][3]
     GuiControl, Settings:, check_right_button, % settings["rb"][3]
+    GuiControl, Settings:, check_forward_button, % settings["fb"][3]
+    GuiControl, Settings:, check_back_button, % settings["bb"][3]
     GuiControl, Settings:, slide_pressure_l, % settings["lpr"][3]
     GuiControl, Settings:, slide_pressure_m, % settings["mpr"][3]
     GuiControl, Settings:, slide_pressure_r, % settings["rpr"][3]
+    GuiControl, Settings:, slide_pressure_f, % settings["fpr"][3]
+    GuiControl, Settings:, slide_pressure_b, % settings["bpr"][3]
     GuiControl, Settings:, slide_readout_l, % slidePressureReadout(settings["lpr"], settings["lb"][3])
     GuiControl, Settings:, slide_readout_m, % slidePressureReadout(settings["mpr"], settings["mb"][3])
     GuiControl, Settings:, slide_readout_r, % slidePressureReadout(settings["rpr"], settings["rb"][3])
+    GuiControl, Settings:, slide_readout_f, % slidePressureReadout(settings["fpr"], settings["fb"][3])
+    GuiControl, Settings:, slide_readout_b, % slidePressureReadout(settings["bpr"], settings["bb"][3])
     GuiControl, Settings:, check_start_with_windows, % settings["sww"][3]
 }
 pullSettingsFromGui(){
@@ -187,6 +197,8 @@ pullSettingsFromGui(){
     settings["lb"][3] := check_left_button
     settings["mb"][3] := check_middle_button
     settings["rb"][3] := check_right_button
+    settings["fb"][3] := check_forward_button
+    settings["bb"][3] := check_back_button
     bufferSlidePressure()
     settings["sww"][3] := check_start_with_windows
     save()
@@ -201,6 +213,8 @@ bufferSlidePressure() {
     settings["lpr"][3] := slide_pressure_l
     settings["mpr"][3] := slide_pressure_m
     settings["rpr"][3] := slide_pressure_r
+    settings["fpr"][3] := slide_pressure_f
+    settings["bpr"][3] := slide_pressure_b
 }
 
 settingsButtonCancel(){
