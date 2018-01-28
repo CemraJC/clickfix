@@ -87,31 +87,39 @@ settingsGui() {
     Gui, Settings: -Resize -MaximizeBox +OwnDialogs
 
     ; Title and Copyright
-    Gui, Settings:font, s18, Arial
-    Gui, Settings:Add, Text, Center W500, ClickFix Settings
+    Gui, Settings:font, s19, Arial
+    Gui, Settings:Add, Text, Center W500 yp-2, ClickFix Settings
     Gui, Settings:font, s8 c808080, Trebuchet MS
-    Gui, Settings:Add, Text, Center W500 yp+26, Copyright (c) 2017 Jason Cemra
+    Gui, Settings:Add, Text, Center W500 yp+28, Copyright (c) 2018 Jason Cemra
 
     ; Leading Paragraph
     Gui, Settings:font, s10 c101013, Arial
-    Gui, Settings:Add, Text, Left W500 yp+22, Choose which mouse button needs fixing - you can select multiple.`nIf you're having issues, adjust the corresponding slider until your clicks are fixed!
+    Gui, Settings:Add, Text, Left W500 yp+16, Choose which mouse button needs fixing - you can select multiple.`nIf you're having issues, adjust the corresponding slider until your clicks are fixed, and`nRemember to click the Apply or Ok button!
 
     ; Standard Settings
     Gui, Settings:font, s8 c505050, Trebuchet MS
-    Gui, Settings:Add, GroupBox, w235 h220, Standard Settings
+    Gui, Settings:Add, GroupBox, yp+49 w235 h210, Standard Settings
     Gui, Settings:font, s10 c10101f, Trebuchet MS
     Gui, Settings:Add, Text, Left w210 xp+12 yp+22, Choose mouse buttons to fix:
-    Gui, Add, Checkbox, yp+25 vcheck_left_button gSettingsCheckBoxes, Fix Left Mouse Button
-    Gui, Add, Checkbox, yp+25 vcheck_middle_button gSettingsCheckBoxes, Fix Middle Mouse Button
-    Gui, Add, Checkbox, yp+25 vcheck_right_button gSettingsCheckBoxes, Fix Right Mouse Button
-    Gui, Settings:Add, Text, Left w210 yp+35, Other Settings:
-    Gui, Add, Checkbox, yp+25 vcheck_start_with_windows, Start on Windows Startup
+    Gui, Add, Checkbox, yp+25 vcheck_left_button gSettingsCheckBoxes, < Left Button
+    Gui, Add, Checkbox, yp+25 vcheck_middle_button gSettingsCheckBoxes, Middle | Button
+    Gui, Add, Checkbox, yp+25 vcheck_right_button gSettingsCheckBoxes, Right Button >
+    Gui, Add, Checkbox, yp+25 vcheck_forward_button gSettingsCheckBoxes, ^ Forward Button
+    Gui, Add, Checkbox, yp+25 vcheck_back_button gSettingsCheckBoxes, v Back Button
+    Gui, Settings:Add, Text, Left w210 yp+19, Other Settings:
+    Gui, Add, Checkbox, yp+21 vcheck_start_with_windows, Start on Windows Startup
     Gui, Settings:font, s10 c810000, Arial
-    Gui, Settings:Add, Button, yp+25 w210 gSettingsButtonReset, Reset everything to default
+    Gui, Settings:Add, Button, yp+27 w210 gSettingsButtonReset, Reset everything to default
+
+    ; Buttons
+    Gui, Settings:font, s8 c101013 w340, Arial
+    Gui, Settings:Add, Button, Default xp-6 Y338 w75, Ok
+    Gui, Settings:Add, Button, xp+80 Y338 w75, Apply
+    Gui, Settings:Add, Button, xp+80 Y338 w75, Cancel
 
     ; Advanced Settings
     Gui, Settings:font, s8 c505050, Trebuchet MS
-    Gui, Settings:Add, GroupBox, xp+245 y106 w235 h190, Advanced
+    Gui, Settings:Add, GroupBox, xp+85 y92 w235 h275, Advanced/Tweaking Settings
     Gui, Settings:font, s10 c101013, Trebuchet MS
     Gui, Settings:Add, Text, Left w210 xp+12 yp+22, "Pressure" for each mouse button:
     Gui, Settings:font, s7 c101013 w700, Arial
@@ -121,16 +129,14 @@ settingsGui() {
     Gui, Add, Slider, yp+13 xp-7 w218 vslide_pressure_m gSettingsPressureSlider, 20
     Gui, Settings:Add, Link, Left w210 yp+32 xp+7 vslide_readout_r, Right click has 0ms of delay.
     Gui, Add, Slider, yp+13 xp-7 w218 vslide_pressure_r gSettingsPressureSlider, 20
-
-    ; Buttons
-    Gui, Settings:font, s8 c101013 w400, Arial
-    Gui, Settings:Add, Button, Default xp-6 Y302 w75, Ok
-    Gui, Settings:Add, Button, xp+80 Y302 w75, Apply
-    Gui, Settings:Add, Button, xp+80 Y302 w75, Cancel
+    Gui, Settings:Add, Link, Left w210 yp+32 xp+7 vslide_readout_f, Forward click has 0ms of delay.
+    Gui, Add, Slider, yp+13 xp-7 w218 vslide_pressure_f gSettingsPressureSlider, 20
+    Gui, Settings:Add, Link, Left w210 yp+32 xp+7 vslide_readout_b, Back click has 0ms of delay.
+    Gui, Add, Slider, yp+13 xp-7 w218 vslide_pressure_b gSettingsPressureSlider, 20
 
     loadSettingsToGui()
     settingsCheckBoxes()
-    Gui, show, W530 H345 center, ClickFix Settings
+    Gui, show, W530 H380 center, ClickFix Settings
 
     ; Show a warning if the program is disabled
     If (settings["dis"][3]) {
