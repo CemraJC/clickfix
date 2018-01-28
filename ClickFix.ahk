@@ -33,6 +33,12 @@ last_l_up := 0
 last_r_down := 0
 last_r_up := 0
 
+last_f_down := 0
+last_f_up := 0
+
+last_b_down := 0
+last_b_up := 0
+
 ; Let's assume that this is a first-run, since there's no settings
 if !FileExist(settings_file) {
     write_settings(settings)
