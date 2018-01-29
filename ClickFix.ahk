@@ -103,19 +103,19 @@ settingsGui() {
     Gui, Settings:Add, GroupBox, yp+49 w235 h210, Standard Settings
     Gui, Settings:font, s10 c10101f, Trebuchet MS
     Gui, Settings:Add, Text, Left w210 xp+12 yp+22, Choose mouse buttons to fix:
-    Gui, Add, Checkbox, yp+25 vcheck_left_button gSettingsCheckBoxes, < Left Button
-    Gui, Add, Checkbox, yp+25 vcheck_middle_button gSettingsCheckBoxes, Middle | Button
-    Gui, Add, Checkbox, yp+25 vcheck_right_button gSettingsCheckBoxes, Right Button >
-    Gui, Add, Checkbox, yp+25 vcheck_forward_button gSettingsCheckBoxes, ^ Forward Button
-    Gui, Add, Checkbox, yp+25 vcheck_back_button gSettingsCheckBoxes, v Back Button
+    Gui, Add, Checkbox, yp+25 vcheck_left_button gSettingsCheckBoxes, Left Click
+    Gui, Add, Checkbox, yp+25 vcheck_middle_button gSettingsCheckBoxes, Middle Click
+    Gui, Add, Checkbox, yp+25 vcheck_right_button gSettingsCheckBoxes, Right Click
+    Gui, Add, Checkbox, yp+25 vcheck_forward_button gSettingsCheckBoxes, Forward Button
+    Gui, Add, Checkbox, yp+25 vcheck_back_button gSettingsCheckBoxes, Back Button
     Gui, Settings:Add, Text, Left w210 yp+19, Other Settings:
     Gui, Add, Checkbox, yp+21 vcheck_start_with_windows, Start on Windows Startup
-    Gui, Settings:font, s10 c810000, Arial
-    Gui, Settings:Add, Button, yp+27 w210 gSettingsButtonReset, Reset everything to default
+    Gui, Settings:font, s8 c810000, Arial
+    Gui, Settings:Add, Button, yp+30 w236 xp-12 gSettingsButtonReset, Reset everything to default
 
     ; Buttons
     Gui, Settings:font, s8 c101013 w340, Arial
-    Gui, Settings:Add, Button, Default xp-6 Y338 w75, Ok
+    Gui, Settings:Add, Button, Default xp Y338 w75, Ok
     Gui, Settings:Add, Button, xp+80 Y338 w75, Apply
     Gui, Settings:Add, Button, xp+80 Y338 w75, Cancel
 
