@@ -1,5 +1,5 @@
 # ClickFix
-###Tame your mouse - stop annoying repeat clicks
+### Tame your mouse - stop annoying repeat clicks
 > ***Windows Only*** - *Should work on any version - tested on Windows 7, 8 and 10*
 
 > If this fixes your mouse (or doesn't) [let me know about it!](mailto:cemrajc+clickfix@gmail.com) :smile:
@@ -15,6 +15,9 @@ When started for the first time, the "About" window pops up. Behind this window 
 
 I reccommend you also enable `Start on Windows Startup` (for convenience).<br>
 When you're satisfied that everything works as it should, hit Ok and ClickFix will never bother you again.
+
+### Use the `Ctrl + Shift + ~` hotkey to temporarily disable ClickFix.
+You can use the same hotkey to re-enable it later.
 
 **3: Forever After That**<br>
 ClickFix will run in the background, keeping a leash on your mouse.

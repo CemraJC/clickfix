@@ -7,7 +7,7 @@ SetWorkingDir %A_ScriptDir%
 
 ; --- Actual program ---
 
-ver := "2.5.1"
+ver := "2.6.1"
 settings_file = ClickFix_Settings.ini
 startup_shortcut := A_Startup . "\ClickFix.lnk"
 settings := Object()
@@ -17,9 +17,13 @@ settings := Object()
 settings["lb"] := ["Mouse", "left_button", false]
 settings["mb"] := ["Mouse", "middle_button", false]
 settings["rb"] := ["Mouse", "right_button", false]
+settings["fb"] := ["Mouse", "forward_button", false]
+settings["bb"] := ["Mouse", "back_button", false]
 settings["lpr"] := ["General", "left_pressure", 25, "Left click"]
 settings["mpr"] := ["General", "middle_pressure", 25, "Middle click"]
 settings["rpr"] := ["General", "right_pressure", 25, "Right click"]
+settings["bpr"] := ["General", "forward_pressure", 25, "Forward click"]
+settings["fpr"] := ["General", "back_pressure", 25, "Back click"]
 settings["sww"] := ["General", "startup_run", false]
 settings["dis"] := ["General", "disabled", false]
 
@@ -32,6 +36,12 @@ last_l_up := 0
 
 last_r_down := 0
 last_r_up := 0
+
+last_f_down := 0
+last_f_up := 0
+
+last_b_down := 0
+last_b_up := 0
 
 ; Let's assume that this is a first-run, since there's no settings
 if !FileExist(settings_file) {
@@ -51,6 +61,8 @@ Menu, Tray, Add, About, about
 Menu, options, Add, Fix Left Button, flb
 Menu, options, Add, Fix Middle Button, fmb
 Menu, options, Add, Fix Right Button, frb
+Menu, options, Add, Fix Forward Button, ffb
+Menu, options, Add, Fix Back Button, fbb
 Menu, options, Add
 Menu, options, Add, Start with Windows, sww
 Menu, Tray, Add, Quick Options, :options
@@ -77,31 +89,39 @@ settingsGui() {
     Gui, Settings: -Resize -MaximizeBox +OwnDialogs
 
     ; Title and Copyright
-    Gui, Settings:font, s18, Arial
-    Gui, Settings:Add, Text, Center W500, ClickFix Settings
+    Gui, Settings:font, s19, Arial
+    Gui, Settings:Add, Text, Center W500 yp-2, ClickFix Settings
     Gui, Settings:font, s8 c808080, Trebuchet MS
-    Gui, Settings:Add, Text, Center W500 yp+26, Copyright (c) 2017 Jason Cemra
+    Gui, Settings:Add, Text, Center W500 yp+28, Copyright (c) 2018 Jason Cemra
 
     ; Leading Paragraph
     Gui, Settings:font, s10 c101013, Arial
-    Gui, Settings:Add, Text, Left W500 yp+22, Choose which mouse button needs fixing - you can select multiple.`nIf you're having issues, adjust the corresponding slider until your clicks are fixed!
+    Gui, Settings:Add, Text, Left W500 yp+16, Choose which mouse button needs fixing - you can select multiple.`nIf you're having issues, adjust the corresponding slider until your clicks are fixed, and`nRemember to click the Apply or Ok button!
 
     ; Standard Settings
     Gui, Settings:font, s8 c505050, Trebuchet MS
-    Gui, Settings:Add, GroupBox, w235 h220, Standard Settings
+    Gui, Settings:Add, GroupBox, yp+49 w235 h210, Standard Settings
     Gui, Settings:font, s10 c10101f, Trebuchet MS
     Gui, Settings:Add, Text, Left w210 xp+12 yp+22, Choose mouse buttons to fix:
-    Gui, Add, Checkbox, yp+25 vcheck_left_button gSettingsCheckBoxes, Fix Left Mouse Button
-    Gui, Add, Checkbox, yp+25 vcheck_middle_button gSettingsCheckBoxes, Fix Middle Mouse Button
-    Gui, Add, Checkbox, yp+25 vcheck_right_button gSettingsCheckBoxes, Fix Right Mouse Button
-    Gui, Settings:Add, Text, Left w210 yp+35, Other Settings:
-    Gui, Add, Checkbox, yp+25 vcheck_start_with_windows, Start on Windows Startup
+    Gui, Add, Checkbox, yp+25 vcheck_left_button gSettingsCheckBoxes, < Left Button
+    Gui, Add, Checkbox, yp+25 vcheck_middle_button gSettingsCheckBoxes, Middle | Button
+    Gui, Add, Checkbox, yp+25 vcheck_right_button gSettingsCheckBoxes, Right Button >
+    Gui, Add, Checkbox, yp+25 vcheck_forward_button gSettingsCheckBoxes, ^ Forward Button
+    Gui, Add, Checkbox, yp+25 vcheck_back_button gSettingsCheckBoxes, v Back Button
+    Gui, Settings:Add, Text, Left w210 yp+19, Other Settings:
+    Gui, Add, Checkbox, yp+21 vcheck_start_with_windows, Start on Windows Startup
     Gui, Settings:font, s10 c810000, Arial
-    Gui, Settings:Add, Button, yp+25 w210 gSettingsButtonReset, Reset everything to default
+    Gui, Settings:Add, Button, yp+27 w210 gSettingsButtonReset, Reset everything to default
+
+    ; Buttons
+    Gui, Settings:font, s8 c101013 w340, Arial
+    Gui, Settings:Add, Button, Default xp-6 Y338 w75, Ok
+    Gui, Settings:Add, Button, xp+80 Y338 w75, Apply
+    Gui, Settings:Add, Button, xp+80 Y338 w75, Cancel
 
     ; Advanced Settings
     Gui, Settings:font, s8 c505050, Trebuchet MS
-    Gui, Settings:Add, GroupBox, xp+245 y106 w235 h190, Advanced
+    Gui, Settings:Add, GroupBox, xp+85 y92 w235 h275, Advanced/Tweaking Settings
     Gui, Settings:font, s10 c101013, Trebuchet MS
     Gui, Settings:Add, Text, Left w210 xp+12 yp+22, "Pressure" for each mouse button:
     Gui, Settings:font, s7 c101013 w700, Arial
@@ -111,16 +131,14 @@ settingsGui() {
     Gui, Add, Slider, yp+13 xp-7 w218 vslide_pressure_m gSettingsPressureSlider, 20
     Gui, Settings:Add, Link, Left w210 yp+32 xp+7 vslide_readout_r, Right click has 0ms of delay.
     Gui, Add, Slider, yp+13 xp-7 w218 vslide_pressure_r gSettingsPressureSlider, 20
-
-    ; Buttons
-    Gui, Settings:font, s8 c101013 w400, Arial
-    Gui, Settings:Add, Button, Default xp-6 Y302 w75, Ok
-    Gui, Settings:Add, Button, xp+80 Y302 w75, Apply
-    Gui, Settings:Add, Button, xp+80 Y302 w75, Cancel
+    Gui, Settings:Add, Link, Left w210 yp+32 xp+7 vslide_readout_f, Forward click has 0ms of delay.
+    Gui, Add, Slider, yp+13 xp-7 w218 vslide_pressure_f gSettingsPressureSlider, 20
+    Gui, Settings:Add, Link, Left w210 yp+32 xp+7 vslide_readout_b, Back click has 0ms of delay.
+    Gui, Add, Slider, yp+13 xp-7 w218 vslide_pressure_b gSettingsPressureSlider, 20
 
     loadSettingsToGui()
     settingsCheckBoxes()
-    Gui, show, W530 H345 center, ClickFix Settings
+    Gui, show, W530 H380 center, ClickFix Settings
 
     ; Show a warning if the program is disabled
     If (settings["dis"][3]) {
@@ -135,6 +153,8 @@ settingsCheckBoxes() {
     GuiControl, Settings:Enable%check_left_button%, slide_pressure_l
     GuiControl, Settings:Enable%check_middle_button%, slide_pressure_m
     GuiControl, Settings:Enable%check_right_button%, slide_pressure_r
+    GuiControl, Settings:Enable%check_forward_button%, slide_pressure_f
+    GuiControl, Settings:Enable%check_back_button%, slide_pressure_b
     settingsPressureSlider()
 }
 settingsPressureSlider() {
@@ -143,6 +163,8 @@ settingsPressureSlider() {
     GuiControl, Settings:, slide_readout_l, % slidePressureReadout(settings["lpr"], check_left_button)
     GuiControl, Settings:, slide_readout_m, % slidePressureReadout(settings["mpr"], check_middle_button)
     GuiControl, Settings:, slide_readout_r, % slidePressureReadout(settings["rpr"], check_right_button)
+    GuiControl, Settings:, slide_readout_f, % slidePressureReadout(settings["fpr"], check_forward_button)
+    GuiControl, Settings:, slide_readout_b, % slidePressureReadout(settings["bpr"], check_back_button)
 }
 settingsButtonOk() {
     if (pullSettingsFromGui()) {
@@ -157,12 +179,18 @@ loadSettingsToGui(){
     GuiControl, Settings:, check_left_button, % settings["lb"][3]
     GuiControl, Settings:, check_middle_button, % settings["mb"][3]
     GuiControl, Settings:, check_right_button, % settings["rb"][3]
+    GuiControl, Settings:, check_forward_button, % settings["fb"][3]
+    GuiControl, Settings:, check_back_button, % settings["bb"][3]
     GuiControl, Settings:, slide_pressure_l, % settings["lpr"][3]
     GuiControl, Settings:, slide_pressure_m, % settings["mpr"][3]
     GuiControl, Settings:, slide_pressure_r, % settings["rpr"][3]
+    GuiControl, Settings:, slide_pressure_f, % settings["fpr"][3]
+    GuiControl, Settings:, slide_pressure_b, % settings["bpr"][3]
     GuiControl, Settings:, slide_readout_l, % slidePressureReadout(settings["lpr"], settings["lb"][3])
     GuiControl, Settings:, slide_readout_m, % slidePressureReadout(settings["mpr"], settings["mb"][3])
     GuiControl, Settings:, slide_readout_r, % slidePressureReadout(settings["rpr"], settings["rb"][3])
+    GuiControl, Settings:, slide_readout_f, % slidePressureReadout(settings["fpr"], settings["fb"][3])
+    GuiControl, Settings:, slide_readout_b, % slidePressureReadout(settings["bpr"], settings["bb"][3])
     GuiControl, Settings:, check_start_with_windows, % settings["sww"][3]
 }
 pullSettingsFromGui(){
@@ -171,6 +199,8 @@ pullSettingsFromGui(){
     settings["lb"][3] := check_left_button
     settings["mb"][3] := check_middle_button
     settings["rb"][3] := check_right_button
+    settings["fb"][3] := check_forward_button
+    settings["bb"][3] := check_back_button
     bufferSlidePressure()
     settings["sww"][3] := check_start_with_windows
     save()
@@ -185,6 +215,8 @@ bufferSlidePressure() {
     settings["lpr"][3] := slide_pressure_l
     settings["mpr"][3] := slide_pressure_m
     settings["rpr"][3] := slide_pressure_r
+    settings["fpr"][3] := slide_pressure_f
+    settings["bpr"][3] := slide_pressure_b
 }
 
 settingsButtonCancel(){
@@ -229,6 +261,18 @@ updateTrayMenuState(){
         Menu, options, Check, Fix Right Button
     } else {
         Menu, options, UnCheck, Fix Right Button
+    }
+
+    if (settings["fb"][3] == true) {
+        Menu, options, Check, Fix Forward Button
+    } else {
+        Menu, options, UnCheck, Fix Forward Button
+    }
+
+    if (settings["bb"][3] == true) {
+        Menu, options, Check, Fix Back Button
+    } else {
+        Menu, options, UnCheck, Fix Back Button
     }
 
     if (settings["sww"][3] == true) {
@@ -277,6 +321,20 @@ return
 frb:
 Menu, options, ToggleCheck, Fix Right Button
 settings["rb"][3] := !settings["rb"][3]
+save()
+loadSettingsToGui()
+return
+
+ffb:
+Menu, options, ToggleCheck, Fix Forward Button
+settings["fb"][3] := !settings["fb"][3]
+save()
+loadSettingsToGui()
+return
+
+fbb:
+Menu, options, ToggleCheck, Fix Back Button
+settings["bb"][3] := !settings["bb"][3]
 save()
 loadSettingsToGui()
 return
@@ -408,5 +466,35 @@ return
 if (A_TickCount - last_r_up >= slidePressureScale(settings["rpr"][3])) {
     Send {Blind}{RButton Up}
     last_r_up := A_TickCount
+}
+return
+
+#If, settings["fb"][3] and !settings["dis"][3]
+*XButton2::
+if (A_TickCount - last_f_down >= slidePressureScale(settings["fpr"][3]) && A_TickCount - last_f_up >= slidePressureScale(settings["fpr"][3])) {
+    Send {Blind}{XButton2 Down}
+    last_f_down := A_TickCount
+}
+return
+
+*XButton2 up::
+if (A_TickCount - last_f_up >= slidePressureScale(settings["fpr"][3])) {
+    Send {Blind}{XButton2 Up}
+    last_f_up := A_TickCount
+}
+return
+
+#If, settings["bb"][3] and !settings["dis"][3]
+*XButton1::
+if (A_TickCount - last_b_down >= slidePressureScale(settings["bpr"][3]) && A_TickCount - last_b_up >= slidePressureScale(settings["bpr"][3])) {
+    Send {Blind}{XButton1 Down}
+    last_b_down := A_TickCount
+}
+return
+
+*XButton1 up::
+if (A_TickCount - last_b_up >= slidePressureScale(settings["bpr"][3])) {
+    Send {Blind}{XButton1 Up}
+    last_b_up := A_TickCount
 }
 return
