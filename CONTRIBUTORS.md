@@ -65,5 +65,5 @@ Thanks for taking the time to read this - it really helps.
 > You get internet cred and your username in the commit logs for doing these
 
 * Make the icon look even cooler
-* ~~Support for more buttons (only if the problem exists)~~
+* ~~Support for more buttons (only if the problem exists)~~ [wesamco](https://github.com/wesamco)
 * Make a test ground for new mice / issues (web interface - capture clicks, flag misclicks)
