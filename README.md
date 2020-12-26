@@ -7,10 +7,10 @@
 
 ### [Getting started](https://github.com/cemrajc/clickfix/releases/latest) <span style="font-size:60%">*&larr; TL;DR, click here.*</span>
 
-**1: Download**<br>
+## 1: Download<br>
 To get going, simply download the [latest executable](https://github.com/cemrajc/clickfix/releases/latest), **put it in its own folder** and run it. Because ClickFix is completely portable, it runs without installation - you could even run it off a thumb-drive. Keep in mind that it will create a settings file in the folder you put it in.
 
-**2: First Run**<br>
+## 2: First Run<br>
 When started for the first time, the "About" window pops up. Behind this window is the settings panel (this can be accessed later from the tray menu). To get ClickFix up and running, select the mouse button that needs fixing. I reccommend using the 'click tester' on the [homepage](https://clickfix.cf) to fine-tune the pressure setting. Normally the default `pressure` setting works well, but if the fix only works sometimes or *doesn't work at all*, try increasing the `pressure` slider.
 
 I reccommend you also enable `Start on Windows Startup` (for convenience).<br>
@@ -19,7 +19,7 @@ When you're satisfied that everything works as it should, hit Ok and ClickFix wi
 ### Use the `Ctrl + Shift + ~` hotkey to temporarily disable ClickFix.
 You can use the same hotkey to re-enable it later.
 
-**3: Forever After That**<br>
+## 3: Forever After That<br>
 ClickFix will run in the background, keeping a leash on your mouse.
 If you ever want to quickly change some settings, right click on the tray icon and under 'Quick Options' you have access to some of the standard settings.<br>
 If you **come across any bugs**, please start an [issue tracker](https://github.com/cemrajc/clickfix/issues) and I'll try to accommodate you as soon as possible.
@@ -36,12 +36,16 @@ If you **come across any bugs**, please start an [issue tracker](https://github.
 1. Delete the contents of the directory
 1. Put the latest stuff in
 
-
 **Uninstall**<br>
 To remove all traces of ClickFix from your computer, simply click "Reset" in the tray menu or the settings window and delete the folder you put it in.
 
+**Donations**<br id="donations">
+If ClickFix has been useful for you, and you would like to donate to the developers, use [this link to send money to Decatronics](https://www.paypal.com/donate?hosted_button_id=2CR4F6BNL2WLU), the software and design group that made it happen.
+
+Alternatively, consider making a donation to the [AutoHotKey foundation](https://www.autohotkey.com/foundation/) who made this all possible! (link at the bottom of their page.)
+
 **Obligatory garbage**<br>
-Copyright &copy; 2017 Jason Cemra - released under the [GPLv3](http://www.gnu.org/licenses/)
+Copyright &copy; 2020 Jason Cemra - released under the [GPLv3](http://www.gnu.org/licenses/)
 
 
 # Learn more here:
