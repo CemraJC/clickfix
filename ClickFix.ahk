@@ -7,7 +7,7 @@ SetWorkingDir %A_ScriptDir%
 
 ; --- Actual program ---
 
-ver := "2.6.1"
+ver := "3.0.0"
 settings_file = ClickFix_Settings.ini
 startup_shortcut := A_Startup . "\ClickFix.lnk"
 settings := Object()
@@ -72,6 +72,7 @@ Menu, Tray, Default, Full Settings
 
 Menu, Tray, Add,
 Menu, Tray, Add, Restart, restart
+Menu, Tray, Add, Toggle Active, toggle_enabled
 Menu, Tray, Add,
 Menu, Tray, Add, Reset, reset
 Menu, Tray, Add, Exit, exit
@@ -92,7 +93,7 @@ settingsGui() {
     Gui, Settings:font, s19, Arial
     Gui, Settings:Add, Text, Center W500 yp-2, ClickFix Settings
     Gui, Settings:font, s8 c808080, Trebuchet MS
-    Gui, Settings:Add, Text, Center W500 yp+28, Copyright (c) 2018 Jason Cemra
+    Gui, Settings:Add, Text, Center W500 yp+28, Copyright (c) 2021 Jason Cemra
 
     ; Leading Paragraph
     Gui, Settings:font, s10 c101013, Arial
@@ -295,12 +296,12 @@ Sleep, 500  ; There seems to be an issue with the startup shortcut disappearing
 update_sww_state(settings["sww"][3])
 
 ; Use a hotkey to enable/disable the software functionality
+toggle_enabled:
 ^+`::
 settings["dis"][3] := !settings["dis"][3]
 setTrayIcon()
 save()
 return
-
 
 
 ; Menu handlers - using labels to manipulate global variables
@@ -412,7 +413,7 @@ startup_shortcut_destroy() {
 about() {
     global ver
     Gui, Settings:+OwnDialogs
-    MsgBox, 0x40, Welcome to ClickFix!, % "Thank you for using ClickFix!`n`nClickFix is always available from the taskbar tray area (if it's running). Remember, ClickFix makes an unusable mouse into a bearable one until a replacement can be made. You may experience issues with the mouse not clicking at times - simply right click on the tray icon to restart the program.`n`nThis software is at version " . ver . ".`nCopyright 2017 Jason Cemra - released under the GPLv3.`nSpecial thanks to the AutoHotKey crew, for making this program easy to write."
+    MsgBox, 0x40, Welcome to ClickFix!, % "Thank you for using ClickFix!`n`nClickFix is always available from the taskbar tray area (if it's running). Remember, ClickFix makes an unusable mouse into a bearable one until a replacement can be made. You may experience issues with the mouse not clicking at times - simply right click on the tray icon to restart the program.`n`nThis software is at version " . ver . ".`nCopyright 2021 Jason Cemra - released under the GPLv3.`nSpecial thanks to the AutoHotKey crew, for making this program easy to write."
 }
 
 restart() {
