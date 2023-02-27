@@ -7,7 +7,7 @@ SetWorkingDir %A_ScriptDir%
 
 ; --- Actual program ---
 
-ver := "3.0.0"
+ver := "3.1.0"
 settings_file = ClickFix_Settings.ini
 startup_shortcut := A_Startup . "\ClickFix.lnk"
 settings := Object()
@@ -93,7 +93,7 @@ settingsGui() {
     Gui, Settings:font, s19, Arial
     Gui, Settings:Add, Text, Center W500 yp-2, ClickFix Settings
     Gui, Settings:font, s8 c808080, Trebuchet MS
-    Gui, Settings:Add, Text, Center W500 yp+28, Copyright (c) 2021 Jason Cemra
+    Gui, Settings:Add, Text, Center W500 yp+28, Copyright (c) 2023 Jason Cemra
 
     ; Leading Paragraph
     Gui, Settings:font, s10 c101013, Arial
@@ -413,7 +413,7 @@ startup_shortcut_destroy() {
 about() {
     global ver
     Gui, Settings:+OwnDialogs
-    MsgBox, 0x40, Welcome to ClickFix!, % "Thank you for using ClickFix!`n`nClickFix is always available from the taskbar tray area (if it's running). Remember, ClickFix makes an unusable mouse into a bearable one until a replacement can be made. You may experience issues with the mouse not clicking at times - simply right click on the tray icon to restart the program.`n`nThis software is at version " . ver . ".`nCopyright 2021 Jason Cemra - released under the GPLv3.`nSpecial thanks to the AutoHotKey crew, for making this program easy to write."
+    MsgBox, 0x40, Welcome to ClickFix!, % "Thank you for using ClickFix!`n`nClickFix is always available from the taskbar tray area (if it's running). Remember, ClickFix makes an unusable mouse into a bearable one until a replacement can be made. You may experience issues with the mouse not clicking at times - simply right click on the tray icon to restart the program.`n`nThis software is at version " . ver . ".`nCopyright 2023 Jason Cemra - released under the GPLv3.`nSpecial thanks to the AutoHotKey crew, for making this program easy to write."
 }
 
 restart() {
