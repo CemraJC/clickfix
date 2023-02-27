@@ -4,8 +4,13 @@
 
 > If this fixes your mouse (or doesn't) [let me know about it!](mailto:cemrajc+clickfix@gmail.com) :smile:
 
-
 ### [Getting started](https://github.com/cemrajc/clickfix/releases/latest) <span style="font-size:60%">*&larr; TL;DR, click here.*</span>
+
+### IMPORTANT: Note about Administrator Rights
+
+ClickFix doesn't normally require Administrator rights, but in a recent update of windows (circa December 2022) an issue arose where if ClickFix is not running with elevated permissions, and you click into a window that _is_ running in elevated permissions, then you won't be about to click away from it (you need to close the window, use Alt + Tab, or press Windows + E to change your focus to a new window).
+
+**The solution:** Run ClickFix as Administrator (right click and "Run as administrator", or modify the shortcut to always use admin) and you won't find any problems with clicking into and out-of windows, regardless of their permission level.
 
 ## 1: Download<br>
 To get going, simply download the [latest executable](https://github.com/cemrajc/clickfix/releases/latest), **put it in its own folder** and run it. Because ClickFix is completely portable, it runs without installation - you could even run it off a thumb-drive. Keep in mind that it will create a settings file in the folder you put it in.
