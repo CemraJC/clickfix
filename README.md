@@ -16,7 +16,7 @@ ClickFix doesn't normally require Administrator rights, but in a recent update o
 To get going, simply download the [latest executable](https://github.com/cemrajc/clickfix/releases/latest), **put it in its own folder** and run it. Because ClickFix is completely portable, it runs without installation - you could even run it off a thumb-drive. Keep in mind that it will create a settings file in the folder you put it in.
 
 ## 2: First Run<br>
-When started for the first time, the "About" window pops up. Behind this window is the settings panel (this can be accessed later from the tray menu). To get ClickFix up and running, select the mouse button that needs fixing. I reccommend using the 'click tester' on the [homepage](https://clickfix.cf) to fine-tune the pressure setting. Normally the default `pressure` setting works well, but if the fix only works sometimes or *doesn't work at all*, try increasing the `pressure` slider.
+When started for the first time, the "About" window pops up. Behind this window is the settings panel (this can be accessed later from the tray menu). To get ClickFix up and running, select the mouse button that needs fixing. I reccommend using the 'click tester' on the [homepage](https://cemrajc.github.io/clickfix/) to fine-tune the pressure setting. Normally the default `pressure` setting works well, but if the fix only works sometimes or *doesn't work at all*, try increasing the `pressure` slider.
 
 I reccommend you also enable `Start on Windows Startup` (for convenience).<br>
 When you're satisfied that everything works as it should, hit Ok and ClickFix will never bother you again.
